@@ -1,0 +1,4 @@
+Screen Space Fluids (SSF) uFlex Edition
+support: korzenio [at] gmail.com
+
+Enjoy this high-quality version of SSF shaders (SSF_ComposeFluidHQ) for free!
