@@ -117,7 +117,7 @@ namespace uFlex
 
             m_material.SetPass(0);
 
-            Graphics.DrawProcedural(MeshTopology.Triangles, 6, m_flexParticles.m_particlesCount);
+            Graphics.DrawProceduralNow(MeshTopology.Triangles, 6, m_flexParticles.m_particlesCount);
 
         }
 

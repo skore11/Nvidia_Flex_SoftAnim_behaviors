@@ -11,7 +11,7 @@ public class JiggleFlexProcessor : FlexProcessor
     public override void PostContainerUpdate(FlexSolver solver, FlexContainer cntr, FlexParameters parameters)
     {
 
-        if (Input.GetKeyDown(m_key))
+        if (Input.GetKey(m_key))
         {
             for (int index = 0; index < cntr.m_velocities.Length; ++index)
             {

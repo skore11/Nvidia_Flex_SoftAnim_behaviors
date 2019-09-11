@@ -216,6 +216,7 @@ namespace uFlex
             //keep the order of objects already present in the container
             FlexParticles[] flexGOs = FindObjectsOfType<FlexParticles>();
             bool countChanged = m_flexGameObjects.Count != flexGOs.Length;
+            //Debug.Log("Flex gameObjects particles count: " + flexGOs.Length);
 
             //handle deletions
             m_flexGameObjects.RemoveAll(x => x == null);
@@ -304,11 +305,15 @@ namespace uFlex
 
                 if (shapes && shapes.enabled)
                 {
+                   // Debug.Log(m_shapesCount);
                     shapes.m_shapesIndex = m_shapesCount;
+                    
                     shapes.m_shapesIndicesIndex = m_shapeIndicesCount;
 
                     m_shapesCount += shapes.m_shapesCount;
+                    //Debug.Log(shapes.m_shapesCount);
                     m_shapeIndicesCount += shapes.m_shapeIndicesCount;
+                    //Debug.Log(m_shapeIndicesCount);
                 }
 
                 if (triangles && triangles.enabled)

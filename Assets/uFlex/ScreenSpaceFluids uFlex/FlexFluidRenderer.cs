@@ -138,7 +138,7 @@ namespace uFlex
 
             m_colorMaterial.SetPass(0);
 
-            Graphics.DrawProcedural(MeshTopology.Triangles, 6, m_flexParticles.m_particlesCount);
+            Graphics.DrawProceduralNow(MeshTopology.Triangles, 6, m_flexParticles.m_particlesCount);
         }
 
         void DrawDepth()
@@ -162,7 +162,7 @@ namespace uFlex
             m_depthMaterial.SetPass(0);
 
             
-            Graphics.DrawProcedural(MeshTopology.Triangles, 6, m_flexParticles.m_particlesCount);
+            Graphics.DrawProceduralNow(MeshTopology.Triangles, 6, m_flexParticles.m_particlesCount);
         }
 
         void BlurDepth()
@@ -211,7 +211,7 @@ namespace uFlex
 
             m_thicknessMaterial.SetPass(0);
 
-            Graphics.DrawProcedural(MeshTopology.Triangles, 6, m_flexParticles.m_particlesCount);
+            Graphics.DrawProceduralNow(MeshTopology.Triangles, 6, m_flexParticles.m_particlesCount);
         }
 
         void OnDisable()

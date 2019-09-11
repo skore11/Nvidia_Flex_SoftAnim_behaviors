@@ -120,7 +120,7 @@ namespace NVIDIA.Flex
                     m_prepareFluidMaterial.SetMatrixArray("_ProjMatrix", new[] { GL.GetGPUProjectionMatrix(cam.GetStereoProjectionMatrix(Camera.StereoscopicEye.Left), active != null), GL.GetGPUProjectionMatrix(cam.GetStereoProjectionMatrix(Camera.StereoscopicEye.Right), active != null) });
                     m_prepareFluidMaterial.SetInt("_EyeCount", 2);
                     m_prepareFluidMaterial.SetPass(depthPass);
-                    Graphics.DrawProcedural(MeshTopology.Points, m_indexBuffer.count);
+                    Graphics.DrawProceduralNow(MeshTopology.Points, m_indexBuffer.count);
                 }
                 else
                 {
@@ -128,7 +128,7 @@ namespace NVIDIA.Flex
                     m_prepareFluidMaterial.SetMatrixArray("_ProjMatrix", new[] { GL.GetGPUProjectionMatrix(cam.projectionMatrix, active != null), Matrix4x4.identity });
                     m_prepareFluidMaterial.SetInt("_EyeCount", 1);
                     m_prepareFluidMaterial.SetPass(depthPass);
-                    Graphics.DrawProcedural(MeshTopology.Points, m_indexBuffer.count);
+                    Graphics.DrawProceduralNow(MeshTopology.Points, m_indexBuffer.count);
                 }
                 Graphics.SetRenderTarget(active);
 

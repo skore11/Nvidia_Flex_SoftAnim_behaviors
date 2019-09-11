@@ -113,7 +113,7 @@ namespace uFlex
             m_material.SetFloat("_PointScale", m_scale);
             m_material.SetColor("_Color", m_color);
 
-            Graphics.DrawProcedural(MeshTopology.Triangles, 6, m_ps.particleCount);
+            Graphics.DrawProceduralNow(MeshTopology.Triangles, 6, m_ps.particleCount);
   
         }
 

@@ -12,6 +12,7 @@ public class VertMapAssetBuilder
     public VertMapAsset vertMapAsset;
     public SkinnedMeshRenderer skin;
 
+    
     public VertMapAssetBuilder(FlexShapeMatching flexShapeMatching, VertMapAsset vertMapAsset, SkinnedMeshRenderer skin)
     {
         this.flexShapeMatching = flexShapeMatching;
@@ -22,6 +23,7 @@ public class VertMapAssetBuilder
     private List<Vector3> GetFlexShapeMatchingPositions()
     {
         List<Vector3> vertPos = new List<Vector3>();
+        //FlexShapeMatching[] shapesGOs = FindObjectsOfType<FlexShapeMatching>();
 
         FlexShapeMatching shapes = this.flexShapeMatching;
         int shapeIndex = 0;
@@ -166,6 +168,10 @@ public class FlexAnimation : FlexProcessor
     private bool firstRun = true;
     private Vector3[] particlePositions; // world particle positions , ###can be substitued with MassSpawner positions, or initializerfor _positions in MassSpringSystem ####
     public bool drawVertMapAsset = false;
+    public GameObject shapeMatchingGO;
+    
+    //public List<FlexParticles> m_flexGameObjects = new List<FlexParticles>();
+    //public List<FlexShapeMatching> shapesGOList = new List<FlexShapeMatching>();
 
     Vector3[] _cachedVertices;
     Matrix4x4[] _cachedBindposes;
@@ -175,8 +181,9 @@ public class FlexAnimation : FlexProcessor
 
     void OnEnable()
     {
+
         if (flexShapeMatching == null)
-            flexShapeMatching = GetComponent<FlexShapeMatching>();
+            flexShapeMatching = shapeMatchingGO.GetComponent<FlexShapeMatching>();
     }
 
     public override void PreContainerUpdate(FlexSolver solver, FlexContainer cntr, FlexParameters parameters)
@@ -213,6 +220,7 @@ public class FlexAnimation : FlexProcessor
             }
 
             particlePositions = new Vector3[vertMapAsset.particleRestPositions.Count];
+            //Debug.Log(this.skinnedMeshRenderer.name);
             UpdateParticlePositions();
 
         }
@@ -222,6 +230,7 @@ public class FlexAnimation : FlexProcessor
                 return;
 
             // Only process once 30 times a second
+            
             UpdateParticlePositions();
             MatchShapes(); // apply to soft body
 
@@ -232,6 +241,7 @@ public class FlexAnimation : FlexProcessor
 
     public void UpdateParticlePositions()
     {
+        //Debug.Log("particle positions length: " + particlePositions.Length);
         for (int i = 0; i < particlePositions.Length; i++)
         {
             particlePositions[i] = Vector3.zero;
@@ -243,10 +253,11 @@ public class FlexAnimation : FlexProcessor
             foreach (VertexWeight vw in wList.weights)
             {
                 Transform t = skinnedMeshRenderer.bones[wList.boneIndex];
+                //Debug.Log(particlePositions[vw.index]);
                 particlePositions[vw.index] += t.localToWorldMatrix.MultiplyPoint3x4(vw.localPosition) * vw.weight;
             }
         }
-
+        //Debug.Log(vertMapAsset.particleNodeWeights.Length);
         // Now convert each point into local coordinates of this object.
         for (int i = 0; i < particlePositions.Length; i++)
         {
@@ -257,29 +268,97 @@ public class FlexAnimation : FlexProcessor
     private void MatchShapes()
     {
         FlexShapeMatching shapes = this.flexShapeMatching;
+        //FlexShapeMatching[] shapesGOs = FindObjectsOfType<FlexShapeMatching>();
+        //FlexShapeMatching[] shapes_Array = new FlexShapeMatching[m_flexGameObjects.Count];
 
+        //Debug.Log("shape name: " + shapes.name + " shapes count: " + shapes.m_shapesCount + " shape's Index: " + shapes.m_shapesIndex);
+        //for (int i = 0; i < shapesGOs.Length; i++) { Debug.Log("shape game object name: " + shapesGOs[i].name); }
+
+        //Debug.Log( "Number of shapes game objects: " + shapesGOs.Length);
         int shapeIndex = 0;
-        int shapeIndexOffset = shapes.m_shapesIndex;
+        int shapeIndexOffset = 0; //no need for offsets, shapes.m_shapesIndex;
+        ////Debug.Log("before for loop: " + shapes.m_shapesIndex);
         int shapeStart = 0;
-
+        ////Debug.Log("shape name: " + shapes.name + " shape's index: " + shapes.m_shapesIndex);
         int vertIndex = 0;
+
+        //foreach (FlexShapeMatching shapeGo_temp in shapesGOs)
+        ////for (int i = 0; i < shapesGOs.Length; i++)
+        //{
+        //    //Debug.Log(shapeGo_temp.name);
+        //    //Debug.Log(shapeGo_temp.m_shapesIndex);
+        //    int shapeIndex = 0;
+
+        //    int shapeStart = 0;
+
+
+        //    int shapeIndexOffset = shapeGo_temp.m_shapesIndex;
+
+        //    int vertIndex = 0;
+        //    //Debug.Log(shapeIndexOffset);
+        //    for (int s = 0; s < shapeGo_temp.m_shapesCount; s++)
+        //    {
+        //        Vector3 shapeCenter = new Vector3();
+        //        shapeIndex++;
+        //        //Debug.Log("shape name: " + shapes.name + " shape offsets: " + shapes.m_shapeOffsets[s]);
+        //        int shapeEnd = shapeGo_temp.m_shapeOffsets[s];
+
+        //        int shapeCount = shapeEnd - shapeStart;
+        //        //Debug.Log("shape count: " + shapeCount);
+        //        int origShapeIndexOffset = shapeIndexOffset;
+        //        for (int i = shapeStart; i < shapeEnd; ++i)
+        //        {
+        //            int mappedIndex = vertMapAsset.vertexParticleMap[vertIndex];
+        //            Vector3 pos = particlePositions[mappedIndex];
+        //            shapeGo_temp.m_shapeRestPositions[shapeIndexOffset] = pos;
+        //            //Debug.Log(pos);
+        //            shapeCenter += pos;
+        //            //Debug.Log("shape Index: " + shapeIndex);
+        //            //Debug.Log("shape Index offset: " + shapeIndexOffset);
+        //            //Debug.Log("shape center postion: " + shapeCenter);
+        //            shapeIndexOffset++;
+        //            vertIndex++;
+        //        }
+
+        //        shapeCenter /= shapeCount;
+
+        //        for (int i = shapeStart; i < shapeEnd; ++i)
+        //        {
+        //            Vector3 pos = shapeGo_temp.m_shapeRestPositions[origShapeIndexOffset];
+        //            pos -= shapeCenter;
+        //            shapeGo_temp.m_shapeRestPositions[origShapeIndexOffset] = pos;
+        //            origShapeIndexOffset++;
+        //        }
+
+        //        shapeStart = shapeEnd;
+        //    }
+        //}
+
         for (int s = 0; s < shapes.m_shapesCount; s++)
         {
             Vector3 shapeCenter = new Vector3();
             shapeIndex++;
-
+            //Debug.Log("count: " + s + "shape index count : " + shapeIndexOffset);
+            //Debug.Log("shape name: " + shapes.name + " shape offsets: " + shapes.m_shapeOffsets[s]);
             int shapeEnd = shapes.m_shapeOffsets[s];
+            //Debug.Log(shapeEnd);
 
             int shapeCount = shapeEnd - shapeStart;
+            //Debug.Log("shape count: " + shapeCount);
             int origShapeIndexOffset = shapeIndexOffset;
             for (int i = shapeStart; i < shapeEnd; ++i)
             {
                 int mappedIndex = vertMapAsset.vertexParticleMap[vertIndex];
                 Vector3 pos = particlePositions[mappedIndex];
                 shapes.m_shapeRestPositions[shapeIndexOffset] = pos;
+                //Debug.Log(pos);
                 shapeCenter += pos;
+                //Debug.Log("shape Index: " + shapeIndex);
+                //Debug.Log("shape Index offset: " + shapeIndexOffset);
+                //Debug.Log("shape center postion: " + shapeCenter);
                 shapeIndexOffset++;
                 vertIndex++;
+                //Debug.Log("vertex index: " + vertIndex);
             }
 
             shapeCenter /= shapeCount;

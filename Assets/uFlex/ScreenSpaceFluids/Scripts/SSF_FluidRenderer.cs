@@ -161,7 +161,7 @@ namespace SSF
             m_depthMaterial.SetPass(0);
 
             
-            Graphics.DrawProcedural(MeshTopology.Triangles, 6, m_ps.particleCount);
+            Graphics.DrawProceduralNow(MeshTopology.Triangles, 6, m_ps.particleCount);
         }
 
         void BlurDepth()

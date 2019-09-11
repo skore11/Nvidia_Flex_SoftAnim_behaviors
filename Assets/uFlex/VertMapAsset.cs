@@ -9,11 +9,6 @@ public class VertexWeight
     public Vector3 localPosition;
     public float weight;
 
-    public VertexWeight()
-    {
-
-    }
-
     public VertexWeight(int i, Vector3 p, float w)
     {
         index = i;
@@ -64,6 +59,7 @@ public class ShapeIndex
 }
 
 public class VertMapAsset : ScriptableObject
+//public class VertMapAsset : MonoBehaviour
 {
     // index = soft body particle index. Value = vertex index.
     public List<int> vertexParticleMap;
