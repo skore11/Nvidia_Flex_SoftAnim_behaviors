@@ -9,7 +9,8 @@ namespace uFlex
     /// </summary>
     public class FlexMouseDrag : FlexProcessor
     {
-        private int m_mouseParticle = -1;
+        //m_mouseParticle can be made private as well
+        public int m_mouseParticle = -1;
 
         private float m_mouseMass = 0;
 
@@ -30,7 +31,7 @@ namespace uFlex
 
                 if (m_mouseParticle != -1)
                 {
-                    Debug.Log("picked: " + m_mouseParticle);
+                    //Debug.Log("picked: " + m_mouseParticle);
 
                     m_mousePos = ray.origin + ray.direction * m_mouseT;
                     m_mouseMass = cntr.m_particles[m_mouseParticle].invMass;
@@ -41,12 +42,15 @@ namespace uFlex
                 }
             }
 
+            
             if (Input.GetMouseButtonUp(0))
             {
                 if (m_mouseParticle != -1)
                 {
-
-                    cntr.m_particles[m_mouseParticle].invMass = m_mouseMass;
+                    //Note: un comment the line below to allow for moved particles to be return to original positions;
+                    //cntr.m_particles[m_mouseParticle].invMass = m_mouseMass;
+                    cntr.m_particles[m_mouseParticle].pos = m_mousePos;
+                    cntr.m_particles[m_mouseParticle].invMass = 0.0f;
                     m_mouseParticle = -1;
 
                     // need to update positions straight away otherwise particle might be left with increased mass

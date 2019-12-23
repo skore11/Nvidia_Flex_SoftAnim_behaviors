@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Assets\AddFlexCollider.cs" />
     <Compile Include="Assets\FlexPlayerController.cs" />
+    <Compile Include="Assets\FlyCamera.cs" />
     <Compile Include="Assets\JiggleFlexProcessor.cs" />
     <Compile Include="Assets\MeltFlexProcessor.cs" />
     <Compile Include="Assets\NVIDIA\Flex\Actors\FlexActor.cs" />
@@ -97,6 +98,8 @@
     <Compile Include="Assets\uFlex\Common\Scripts\RaycastDragger.cs" />
     <Compile Include="Assets\uFlex\Common\Scripts\TurnOnDepthBuffer.cs" />
     <Compile Include="Assets\uFlex\FlexAnimation.cs" />
+    <Compile Include="Assets\uFlex\FlexSelectParticles.cs" />
+    <Compile Include="Assets\uFlex\Plugins\TestNative.cs" />
     <Compile Include="Assets\uFlex\ScreenSpaceFluids uFlex\FlexFluidRenderer.cs" />
     <Compile Include="Assets\uFlex\ScreenSpaceFluids\Scripts\SSF_ComposeFluid.cs" />
     <Compile Include="Assets\uFlex\ScreenSpaceFluids\Scripts\SSF_FluidRenderer.cs" />
@@ -113,6 +116,10 @@
     <Compile Include="Assets\uFlex\Scripts\Processors\FlexMouseDrag.cs" />
     <Compile Include="Assets\uFlex\Scripts\Processors\FlexParticlesLock.cs" />
     <Compile Include="Assets\uFlex\Scripts\Processors\FlexProcessor.cs" />
+    <Compile Include="Assets\uFlex\Scripts\ReactivityScripts\Behavior.cs" />
+    <Compile Include="Assets\uFlex\Scripts\ReactivityScripts\CreateBehavior.cs" />
+    <Compile Include="Assets\uFlex\Scripts\ReactivityScripts\GetBehaviors.cs" />
+    <Compile Include="Assets\uFlex\Scripts\ReactivityScripts\ViewSkeleton.cs" />
     <Compile Include="Assets\uFlex\Scripts\Solver\FlexColliders.cs" />
     <Compile Include="Assets\uFlex\Scripts\Solver\FlexContainer.cs" />
     <Compile Include="Assets\uFlex\Scripts\Solver\FlexDiffuseParticles.cs" />

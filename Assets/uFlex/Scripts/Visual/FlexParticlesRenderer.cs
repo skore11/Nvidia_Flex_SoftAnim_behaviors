@@ -88,9 +88,11 @@ namespace uFlex
             if (Application.isPlaying)
             {
                 m_posBuffer.SetData(m_flexParticles.m_particles);
+                
             }
             else
             {
+                
                 Vector4[] tmpPos = new Vector4[m_flexParticles.m_maxParticlesCount];
                 for (int i = 0; i < m_flexParticles.m_particlesCount; i++)
                 {

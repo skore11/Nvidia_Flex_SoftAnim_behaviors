@@ -94,7 +94,7 @@ public class VertMapAssetBuilder
         {
             Vector3 particlePos = uniqueParticlePositions[uniqueIndex];
             int i = GetNearestVertIndex(particlePos, ref cachedVertices);
-
+            //Debug.Log(i);
             vertMapAsset.nearestVertIndex.Add(i);
             vertMapAsset.uniqueIndex.Add(uniqueIndex);
             BoneWeight bw = cachedBoneWeights[i];
@@ -122,7 +122,7 @@ public class VertMapAssetBuilder
         }
 
         vertMapAsset.particleNodeWeights = nodeWeights;
-
+        //Debug.Log(nodeWeights.Length);
     }
 
     public void CreateAsset()
@@ -150,6 +150,8 @@ public class VertMapAssetBuilder
         vertMapAsset.particleRestPositions = uniqueParticlePositions;
         vertMapAsset.nearestVertIndex = new List<int>();
         vertMapAsset.uniqueIndex = new List<int>();
+        //Debug.Log(uniqueParticlePositions.Count);
+        //Debug.Log(uniqueParticleIndices.Count);
         SetBoneWeights(ref uniqueParticlePositions, ref uniqueParticleIndices);
 
         // trigger save
@@ -255,6 +257,7 @@ public class FlexAnimation : FlexProcessor
                 Transform t = skinnedMeshRenderer.bones[wList.boneIndex];
                 //Debug.Log(particlePositions[vw.index]);
                 particlePositions[vw.index] += t.localToWorldMatrix.MultiplyPoint3x4(vw.localPosition) * vw.weight;
+                //print(particlePositions[vw.index]);
             }
         }
         //Debug.Log(vertMapAsset.particleNodeWeights.Length);

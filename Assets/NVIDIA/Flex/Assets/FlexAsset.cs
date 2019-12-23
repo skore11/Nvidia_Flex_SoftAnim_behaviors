@@ -37,7 +37,7 @@ namespace NVIDIA.Flex
     {
         #region Properties
 
-        public Vector4[] particles { get { return m_particles; } }
+        public Vector4[] particles { get { return m_particles; } }//mass of particles?
         public int maxParticles { get { return m_maxParticles; } }
         public int[] springIndices { get { return m_springIndices; } }
         public float[] springCoefficients { get { return m_springCoefficients; } }

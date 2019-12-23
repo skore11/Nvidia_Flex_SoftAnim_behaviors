@@ -291,7 +291,7 @@ namespace uFlex
         /// Constant acceleration applied to all particles.
         /// </summary>
         [Tooltip("Constant acceleration applied to all particles.")]
-        public Vector3 m_gravity = new Vector3(0, -9.81f, 0);
+        public Vector3 m_gravity = new Vector3(0, -40.0f, 0);
 
 
         // Use this for initialization

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using uFlex;
 using UnityEngine;
 
-public class JiggleFlexProcessor : FlexProcessor
+public class JiggleFlexProcessor : FlexProcessor, IStorable
 {
     private const float MAX_JIGGLE_FACTOR = 1000f;
     public KeyCode m_key = KeyCode.J;
