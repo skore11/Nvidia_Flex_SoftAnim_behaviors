@@ -5,7 +5,8 @@ Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: UVMapDSMat
   m_Shader: {fileID: 4800000, guid: eb3412c8a3124fd4b94bb5f23d399486, type: 3}
   m_ShaderKeywords: 

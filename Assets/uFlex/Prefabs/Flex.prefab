@@ -4,7 +4,8 @@
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
   - component: {fileID: 495926}
@@ -21,12 +22,13 @@ GameObject:
   m_IsActive: 1
 --- !u!4 &495926
 Transform:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 176192}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 19.70581, y: 5.7218575, z: -12.286327}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -34,9 +36,10 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &11408202
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 176192}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -51,32 +54,12 @@ MonoBehaviour:
   m_diffuseParticles: {fileID: 0}
   m_colliders: {fileID: 0}
   m_parameters: {fileID: 0}
---- !u!114 &11422818
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 176192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ac6a7e0279756a45876ac9c789cc9b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_meshColliders: []
-  m_collidersCount: 0
-  m_collidersPositions: []
-  m_collidersPrevPositions: []
-  m_collidersRotations: []
-  m_collidersPrevRotations: []
-  m_collidersAabbMin: []
-  m_collidersAabbMax: []
-  m_collidersStarts: 
-  m_collidersFlags: 
 --- !u!114 &11437460
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 176192}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -135,21 +118,21 @@ MonoBehaviour:
   m_gravity: {x: 0, y: -9.81, z: 0}
 --- !u!114 &11444918
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 176192}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 47450b37dade5ea4b95b782db04c12a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_flexGameObjects:
-  - {fileID: 0}
+  m_flexGameObjects: []
   m_maxParticlesCount: 65536
   m_activeInstacesCount: 0
-  m_particlesCount: 100
-  m_activeParticlesCount: 100
+  m_particlesCount: 0
+  m_activeParticlesCount: 0
   m_springsCount: 0
   m_shapesCount: 0
   m_shapeIndicesCount: 0
@@ -183,46 +166,25 @@ MonoBehaviour:
   m_inflatableVolumes: []
   m_inflatableStiffness: []
   m_inflatablePressures: []
---- !u!1001 &100100000
-Prefab:
-  m_ObjectHideFlags: 1
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 0}
-      propertyPath: m_radius
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_solidRestDistance
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Fluid
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_NumPlanes
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_fluidRestDistance
-      value: .600000024
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_cohesion
-      value: .100000001
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_viscosity
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_numIterations
-      value: 3
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 176192}
-  m_IsPrefabAsset: 1
+--- !u!114 &11422818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 176192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ac6a7e0279756a45876ac9c789cc9b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_meshColliders: []
+  m_collidersCount: 0
+  m_collidersPositions: []
+  m_collidersPrevPositions: []
+  m_collidersRotations: []
+  m_collidersPrevRotations: []
+  m_collidersAabbMin: []
+  m_collidersAabbMax: []
+  m_collidersStarts: 
+  m_collidersFlags: 
