@@ -1,29 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.IO;
-using uFlex;
 
-namespace abishek
+namespace uFlex
+
 {
     /// <summary>
     /// Drag particles using mouse
     /// </summary>
     public class FlexMouseDrag : FlexProcessor
     {
-        //m_mouseParticle can be made private as well
-        public int m_mouseParticle = -1;
+        public int m_mouseParticle = -1; // made public to allow use in subclass! --strank
 
         private float m_mouseMass = 0;
 
         private float m_mouseT = 0;
 
-        private Vector3 m_mousePos = new Vector3();
-
-        public Vector3 mousePos;
-
-        //private Dictionary<int, Vector3> localCopybehavior;
+        public Vector3 m_mousePos = new Vector3(); // made public to allow use in subclass! --strank
 
         public override void PostContainerUpdate(FlexSolver solver, FlexContainer cntr, FlexParameters parameters)
         {
@@ -38,42 +30,23 @@ namespace abishek
 
                 if (m_mouseParticle != -1)
                 {
-                    //Debug.Log("picked: " + m_mouseParticle);
+                    Debug.Log("picked: " + m_mouseParticle);
 
                     m_mousePos = ray.origin + ray.direction * m_mouseT;
                     m_mouseMass = cntr.m_particles[m_mouseParticle].invMass;
                     cntr.m_particles[m_mouseParticle].invMass = 0.0f;
-                    print(m_mouseParticle);
-                    print(m_mousePos);
+
                     //     Flex.SetParticles(m_solverPtr, m_cntr.m_particles, m_cntr.m_particlesCount, Flex.Memory.eFlexMemoryHost);
 
                 }
             }
 
-            
             if (Input.GetMouseButtonUp(0))
             {
                 if (m_mouseParticle != -1)
                 {
-                    //Note: un comment the line below to allow for moved particles to be return to original positions;
-                    //cntr.m_particles[m_mouseParticle].invMass = m_mouseMass;
-                    print(m_mouseParticle);
-                    print(m_mousePos);
-                    mousePos = m_mousePos;
-                    //this.GetComponent<CreateBehavior>().behavior.dictionary.Add(m_mouseParticle, mousePos);
-                    SerializableMap<int, Vector3> tempIVD = new SerializableMap<int, Vector3>();
-                    tempIVD.Add(m_mouseParticle, mousePos);
-                    this.GetComponent<CreateBehavior>().labeledBehavior.Add("testingtesting", tempIVD);
-                    //this.GetComponent<CreateBehavior>().behavior.dictionary.Add(m_mouseParticle, mousePos);
-                    //this.GetComponent<CreateBehavior>().testMap.DictionaryData.Add(m_mouseParticle, mousePos);
-                    //BinaryFormatter newbf = new BinaryFormatter();
-                    //FileStream file = File.Open(Application.persistentDataPath + "/behaviorTrial.dat", FileMode.Open);
-                    //print(Application.persistentDataPath);
 
-                    //newbf.Serialize(file, this.GetComponent<CreateBehavior>().behavior);
-                    //file.Close();
-                    cntr.m_particles[m_mouseParticle].pos = m_mousePos;
-                    cntr.m_particles[m_mouseParticle].invMass = 0.0f;
+                    cntr.m_particles[m_mouseParticle].invMass = m_mouseMass;
                     m_mouseParticle = -1;
 
                     // need to update positions straight away otherwise particle might be left with increased mass
