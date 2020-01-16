@@ -2,79 +2,92 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Xml.Serialization;
+using System.IO;
+using System;
 //using UnityEditor;
 
 
 namespace uFlex
 {
-
     public class CreateBehavior : FlexProcessor
     {
         public Texture btnTexture;
 
         private bool turnOffAnim;
 
+        private bool doneMoving;
+
         private bool turnOnAnim;
+
+        private int mouseParticle;
+
+        private Vector3 mouseLocal = new Vector3();
+
+        public InputField behaviorName;
 
         //private bool once;
 
-        //Note: create an asset of this dictionary that pertains only to this animated object
-        private Dictionary<string, List<Vector3>> behavior;
-        //private Dictionary<int, Vector3> behavior;
+        
+        //public IntVector3Dictionary behavior = new IntVector3Dictionary();
+        //public IntVector3Dictionary behavior = new IntVector3Dictionary();
+
+
+        //Note: below is a an implementation of a dictionary of dictionaries
+        public SerializableMap<string, SerializableMap<int, Vector3>> labeledBehavior = new SerializableMap<string, SerializableMap<int, Vector3>>();
+        //[Serializable]
+        //public class TestMap : MyMap<int, Vector3> { }
+        //public TestMap testMap;
+        //public MyMap<int, Vector3> mybehavior = new MyMap<int, Vector3>();
 
         //public InputField myinputfield;
 
-        //private BehaviorAsset behaviorAsset;
-
-        //private Particle[] initialPos;
-
-        //private Particle[] newPos;
-
-        //private Vector3[] posChanges;
-
-        //Use a temp Vector3[] to store the changes in particle positions to be used for the behaviors
-
-        //void Start()
-        //{
-        //    once = true;
-        //    string behaviorName = myinputfield.text;
-        //}
-
+     
 
         public override void PostContainerUpdate(FlexSolver solver, FlexContainer cntr, FlexParameters parameters)
         {
-            //newPos = cntr.m_particles;
             
-
+            //Note: might need to use a Coroutine instead!
+            
             //Stop flex animation first then track particle positions for this object;
-            while (turnOffAnim)
+            if (turnOffAnim)
             {
                 
-                List<Vector3> templist = null;
+                //List<Vector3> templist = null;
                 //Vector3 temp;
                 this.GetComponent<FlexAnimation>().enabled = false;//might have to move this to start to optimize
                 //StartCoroutine(MoveParticle());
-                int x = this.GetComponent<FlexMouseDrag>().m_mouseParticle;
-                if (x != -1)
-                {
-                    
-                    Vector3 worldPos = this.GetComponent<FlexParticles>().m_particles[x].pos;//might have to move this to start to optimize
-                    Vector3 localPos = gameObject.transform.InverseTransformPoint(worldPos);
-                    print(localPos);
-                    print("mouse particle no: " + x + "corresponding local coordinate position: " + localPos);
-                    templist.Add(localPos);
+                //int x = this.GetComponent<FlexMouseDrag>().m_mouseParticle;
+              
 
+                if (doneMoving)
+                {
+                    turnOffAnim = false;
+                    doneMoving = false;
                 }
                 
-                turnOffAnim = false;
             }
-
-
 
             if (turnOnAnim)
             {
-                print("ok");
+                
+                //Note: need to save the behavior as an asset possibly or JSON?, need to ask stefan.
+                //string jsonData = JSONSerializer.ToJson<Dictionary<int, Vector3>>(behavior);
+                //File.WriteAllText(Application.persistentDataPath + "/test.json", jsonData);
 
+                // test C# way of serializing:
+                
+                XmlSerializer xmlserializer = new XmlSerializer(labeledBehavior.GetType());
+                FileStream file = File.Open(Application.persistentDataPath + "/labbehaviorTrial2.xml", FileMode.OpenOrCreate);
+                xmlserializer.Serialize(file, labeledBehavior);
+                file.Close();
+                
+                //JSONSerializer.Save<Dictionary<int, Vector3>>("test", behavior);
+                if (behaviorName != null)
+                {
+                    print(behaviorName);
+                }
                 this.GetComponent<FlexAnimation>().enabled = true;
                 turnOnAnim = false;
           
@@ -82,25 +95,66 @@ namespace uFlex
             //store list ofvectors that have changed positions;
         }
 
-     
+        private void OnDisable()
+        {
+            //print(Application.persistentDataPath);
+            //BinaryFormatter newbf = new BinaryFormatter();
+            //FileStream file = File.Open(Application.persistentDataPath + "/behaviorTrial2.dat", FileMode.OpenOrCreate);
+
+
+            //newbf.Serialize(file, behavior);
+            //file.Close();
+
+            //XmlSerializer serializer = new XmlSerializer(typeof(MyMap<int, Vector3>));
+            //StreamWriter writer = new StreamWriter("behaviorTrial.xml");
+            //serializer.Serialize(writer.BaseStream, testMap);
+            //writer.Close();
+
+
+            //XmlFix.SerializeXmlToFile(behavior, "test");
+            //TODO: make IntVector3Dictionary a serializable generic class
+            
+        }
+
+        //void PrintContents(IntVector3Dictionary dict)
+        //{
+        //    foreach (var x in dict)
+        //    {
+        //        int a = x.Key;
+        //        Vector3 A = x.Value;
+        //        print("Index: " + a + " Corresponding Vector: " + A);
+        //    }
+        //}
+
+        //void AddContents(int a, Vector3 x)
+        //{
+        //    behavior.Add(a, x);
+        //}
+
 
         void OnGUI()
         {
             if (!btnTexture)
             {
-                Debug.LogError("Please assign a texture on the inspector");
+                //Debug.LogError("Please assign a texture on the inspector");
                 return;
             }
 
             if (GUI.Button(new Rect(10, 10, 50, 50), "Move particle"))
             {
-                Debug.Log("Clicked the button with text");
+               // Debug.Log("Clicked the button with text");
                 turnOffAnim = true;
             }
 
-            if (GUI.Button(new Rect(10, 70, 50, 30), "Set  behavior"))
+            if (GUI.Button(new Rect(10, 70, 50, 50), "Done Moving"))
             {
-                Debug.Log("Clicked the button with text");
+                //Debug.Log("Clicked the button with text");
+                doneMoving = true;
+            }
+
+            if (GUI.Button(new Rect(10, 150, 50, 30), "Set  behavior"))
+            {
+                //Debug.Log("Clicked the button with text");
                 turnOnAnim = true;
             }
         }

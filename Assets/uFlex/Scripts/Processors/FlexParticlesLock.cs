@@ -13,6 +13,12 @@ namespace uFlex
         public List<int> m_lockedParticlesIds = new List<int>();
         public List<float> m_lockedParticlesMasses = new List<float>();
         public FlexContainer m_cntr;
+        private bool changeCol;
+
+        //private void Start()
+        //{
+        //    changeCol = FindObjectOfType<TriggerParent>().changeCollider;
+        //}
 
 
         public override void FlexStart(FlexSolver solver, FlexContainer cntr, FlexParameters parameters)
@@ -31,11 +37,34 @@ namespace uFlex
                     }
                 }
             }
+            
         }
 
 
         public override void PostContainerUpdate(FlexSolver solver, FlexContainer cntr, FlexParameters parameters)
         {
+            changeCol = FindObjectOfType<TriggerParent>().changeCollider;
+            if (changeCol == true)
+            {
+                print(changeCol);
+                for (int i = 0; i < cntr.m_particlesCount; i++)
+                {
+                    Collider collider = GetComponent<Collider>();
+                    Collider[] colliders = Physics.OverlapSphere(cntr.m_particles[i].pos, 1.0f);
+                    foreach (Collider c in colliders)
+                    {
+                        if (c == collider)
+                        {
+                            m_lockedParticlesIds.Add(i);
+                            m_lockedParticlesMasses.Add(cntr.m_particles[i].invMass);
+                            cntr.m_particles[i].invMass = 0.0f;
+                        }
+                    }
+                }
+                changeCol = false;
+                FindObjectOfType<TriggerParent>().changeCollider = false;
+            }
+
             for (int i = 0; i < m_lockedParticlesIds.Count; i++)
             {
                 if (m_lock)
