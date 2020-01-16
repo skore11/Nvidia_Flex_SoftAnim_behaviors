@@ -40,6 +40,7 @@ public class MyFlexParticlesLock : FlexParticlesLock
             }
             m_triggerParent.changeCollider = false;
         }
+        base.PostContainerUpdate(solver, cntr, parameters);
     }
 
     void OnDrawGizmosSelected()
