@@ -72,7 +72,7 @@ namespace uFlex
 
 
         //Color color = new Color(UnityEngine.Random.value, UnityEngine.Random.value, UnityEngine.Random.value, 1.0f);
-        Color color = Color.gray;
+        Color color = Color.green;
         Mesh inputMesh;
         bool softMesh = true;
 
