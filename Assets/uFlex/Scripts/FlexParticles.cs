@@ -135,10 +135,7 @@ namespace uFlex
 
                 for (int i = 0; i < m_particlesCount; i++)
                 {
-                    if (!Application.isPlaying)
-                        Gizmos.DrawSphere(transform.TransformPoint(m_restParticles[i].pos), 0.2f);
-                    else
-                        Gizmos.DrawSphere(m_restParticles[i].pos, 0.2f);
+                    Gizmos.DrawSphere(transform.TransformPoint(m_restParticles[i].pos), 0.2f);
                 }
             }
         }
