@@ -24,20 +24,10 @@ public class MyFlexParticlesLock : FlexParticlesLock
         }
         if (m_triggerParent.changeCollider)
         {
-            for (int i = 0; i < cntr.m_particlesCount; i++)
-            {
-                Collider collider = GetComponent<Collider>();
-                Collider[] colliders = Physics.OverlapSphere(cntr.m_particles[i].pos, 1.0f);
-                foreach (Collider c in colliders)
-                {
-                    if (c == collider)
-                    {
-                        m_lockedParticlesIds.Add(i);
-                        m_lockedParticlesMasses.Add(cntr.m_particles[i].invMass);
-                        cntr.m_particles[i].invMass = 0.0f;
-                    }
-                }
-            }
+            // update the locked particles: first clear, then call FlexStart again
+            this.m_lockedParticlesIds.Clear();
+            this.m_lockedParticlesMasses.Clear();
+            base.FlexStart(solver, cntr, parameters);
             m_triggerParent.changeCollider = false;
         }
         base.PostContainerUpdate(solver, cntr, parameters);
