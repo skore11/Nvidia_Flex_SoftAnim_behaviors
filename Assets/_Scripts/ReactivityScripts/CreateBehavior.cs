@@ -6,11 +6,11 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml.Serialization;
 using System.IO;
 using System;
+using uFlex;
 //using UnityEditor;
 
 
-namespace uFlex
-{
+
     public class CreateBehavior : FlexProcessor
     {
         public Texture btnTexture;
@@ -42,29 +42,47 @@ namespace uFlex
         //public MyMap<int, Vector3> mybehavior = new MyMap<int, Vector3>();
 
         //public InputField myinputfield;
+        public FlyCamera flyCam;
+        private Transform reset;
+        public bool flyCamEnable = false;
+        private FlexPlayerController playerController;
 
-     
+
+
+        void Start()
+        {
+             //flyCam = FindObjectOfType<FlyCamera>();
+            playerController = FindObjectOfType<FlexPlayerController>();
+            //reset = flyCam.resetTransform;
+            print(reset.position);
+        }
+
 
         public override void PostContainerUpdate(FlexSolver solver, FlexContainer cntr, FlexParameters parameters)
         {
-            
+
             //Note: might need to use a Coroutine instead!
-            
+
             //Stop flex animation first then track particle positions for this object;
             if (turnOffAnim)
             {
-                
+                flyCamEnable = true;
                 //List<Vector3> templist = null;
                 //Vector3 temp;
                 this.GetComponent<FlexAnimation>().enabled = false;//might have to move this to start to optimize
+                flyCam.enabled = true;
+                playerController.enabled = false;
                 //StartCoroutine(MoveParticle());
                 //int x = this.GetComponent<FlexMouseDrag>().m_mouseParticle;
-              
+
 
                 if (doneMoving)
                 {
                     turnOffAnim = false;
                     doneMoving = false;
+                    flyCamEnable = false;
+                    print(reset.position);
+                    playerController.enabled = true;
                 }
                 
             }
@@ -161,4 +179,4 @@ namespace uFlex
 
     }
 
-    }
+    

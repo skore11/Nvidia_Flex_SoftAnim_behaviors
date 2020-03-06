@@ -31931,7 +31931,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   fGB: {fileID: 940157303}
-  m_cntr: {fileID: 205847281}
 --- !u!65 &940157316
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -32058,7 +32057,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1121313684}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 12.1, z: 0}
   m_LocalScale: {x: 1, y: 10, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

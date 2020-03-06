@@ -7,6 +7,7 @@ public class MyFlexMouseDrag : FlexMouseDrag
 {
     public override void PostContainerUpdate(FlexSolver solver, FlexContainer cntr, FlexParameters parameters)
     {
+        base.PostContainerUpdate(solver, cntr, parameters);
         int tmp_part_id = -1;
         if (Input.GetMouseButtonUp(0))
         {

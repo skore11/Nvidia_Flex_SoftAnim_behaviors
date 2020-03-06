@@ -28,7 +28,29 @@ namespace uFlex
 
         }
 
-        void OnGUI()
+        void OnTriggerEnter(Collider other)
+        {
+            switch (other.tag)
+            {
+                case ("Rigid"):
+                    flexSolver.m_solverSubSteps = 3;
+                    break;
+                case ("loose"):
+                    flexSolver.m_solverSubSteps = 1;
+                    break;
+                case ("SoftBody"):
+                    flexParams.m_numIterations = 3;
+                    break;
+                case ("RigidBody"):
+                    flexParams.m_numIterations = 20;
+                    break;
+                default:
+                    print("Nothing to trigger");
+                    break;
+            }
+        }
+
+            void OnGUI()
         {
             GUI.Label(new Rect(100, 10, 120, 50), "Flex Solver Sub Steps");
             solverSubSteps = GUI.HorizontalSlider(new Rect(100, 50, 120, 50), solverSubSteps, 1.0F, 5.0F);

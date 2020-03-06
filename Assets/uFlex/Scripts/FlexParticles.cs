@@ -9,6 +9,7 @@ namespace uFlex
     {
         public Vector3 pos;
         public float invMass;
+        //public Quaternion quaternion;
     }
 
     public enum FlexInteractionType
