@@ -7,7 +7,7 @@ public class MyFlexMouseDrag : FlexMouseDrag
 {
     public override void PostContainerUpdate(FlexSolver solver, FlexContainer cntr, FlexParameters parameters)
     {
-        base.PostContainerUpdate(solver, cntr, parameters);
+        //base.PostContainerUpdate(solver, cntr, parameters);
         int tmp_part_id = -1;
         if (Input.GetMouseButtonUp(0))
         {
@@ -23,7 +23,7 @@ public class MyFlexMouseDrag : FlexMouseDrag
                 //this.GetComponent<CreateBehavior>().behavior.dictionary.Add(m_mouseParticle, mousePos);
                 SerializableMap<int, Vector3> tempIVD = new SerializableMap<int, Vector3>();
                 tempIVD.Add(m_mouseParticle, m_mousePos);
-                this.GetComponent<CreateBehavior>().labeledBehavior.Add("testingtesting", tempIVD);
+                this.GetComponent<CreateBehavior>().labeledBehavior.Add(this.GetComponent<CreateBehavior>().behaviorName.text, tempIVD);
 
                 // remember particle id, since we need to undo parent's setting it back to non-zero mass:
                 tmp_part_id = m_mouseParticle;

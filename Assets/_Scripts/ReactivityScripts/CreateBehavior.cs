@@ -21,6 +21,8 @@ using uFlex;
 
         private bool turnOnAnim;
 
+        private bool showAnim;    
+
         private int mouseParticle;
 
         private Vector3 mouseLocal = new Vector3();
@@ -36,13 +38,16 @@ using uFlex;
 
         //Note: below is a an implementation of a dictionary of dictionaries
         public SerializableMap<string, SerializableMap<int, Vector3>> labeledBehavior = new SerializableMap<string, SerializableMap<int, Vector3>>();
-        //[Serializable]
-        //public class TestMap : MyMap<int, Vector3> { }
-        //public TestMap testMap;
-        //public MyMap<int, Vector3> mybehavior = new MyMap<int, Vector3>();
 
-        //public InputField myinputfield;
-        public FlyCamera flyCam;
+        public SerializableMap<string, SerializableMap<int, Vector3>> container = new SerializableMap<string, SerializableMap<int, Vector3>>();
+
+    //[Serializable]
+    //public class TestMap : MyMap<int, Vector3> { }
+    //public TestMap testMap;
+    //public MyMap<int, Vector3> mybehavior = new MyMap<int, Vector3>();
+
+    //public InputField myinputfield;
+    public FlyCamera flyCam;
         private Transform reset;
         public bool flyCamEnable = false;
         private FlexPlayerController playerController;
@@ -97,18 +102,32 @@ using uFlex;
                 // test C# way of serializing:
                 
                 XmlSerializer xmlserializer = new XmlSerializer(labeledBehavior.GetType());
-                FileStream file = File.Open(Application.persistentDataPath + "/labbehaviorTrial2.xml", FileMode.OpenOrCreate);
+                FileStream file = File.Open(Application.persistentDataPath + "/labbehaviorTrial2.xml", FileMode.Open, FileAccess.Read);
+                //FileStream file = File.Open(Application.persistentDataPath + "/labbehaviorTrial2.xml", FileMode.OpenOrCreate)
                 xmlserializer.Serialize(file, labeledBehavior);
                 file.Close();
                 
                 //JSONSerializer.Save<Dictionary<int, Vector3>>("test", behavior);
                 if (behaviorName != null)
                 {
-                    print(behaviorName);
+                    print(behaviorName.text);
                 }
                 this.GetComponent<FlexAnimation>().enabled = true;
                 turnOnAnim = false;
           
+            }
+
+            if (showAnim)
+            {
+            showAnim = false;
+            XmlSerializer readSerialize = new XmlSerializer(typeof(SerializableMap<string, SerializableMap<int, Vector3>>));
+            //FileStream file = new FileStream(Application.persistentDataPath + "/labbehaviorTrial2.xml", FileMode.Open);
+            FileStream file = new FileStream(Application.persistentDataPath + "/labbehaviorTrial2.xml", FileMode.Create, FileAccess.Write);
+            print(file.Name);
+            container = readSerialize.Deserialize(file) as SerializableMap<string, SerializableMap<int, Vector3>>;
+            print(container.GetType());
+            
+            file.Close();
             }
             //store list ofvectors that have changed positions;
         }
@@ -170,12 +189,18 @@ using uFlex;
                 doneMoving = true;
             }
 
-            if (GUI.Button(new Rect(10, 150, 50, 30), "Set  behavior"))
+            if (GUI.Button(new Rect(10, 150, 100, 30), "Set  behavior"))
             {
                 //Debug.Log("Clicked the button with text");
                 turnOnAnim = true;
             }
-        }
+
+            if (GUI.Button(new Rect(10, 250, 100, 30), "Show behaviors"))
+            {
+                //Debug.Log("Clicked the button with text");
+                showAnim = true;
+            }
+    }
 
     }
 

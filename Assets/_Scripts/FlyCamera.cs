@@ -72,7 +72,7 @@ public class FlyCamera : MonoBehaviour
 
         if (FindObjectOfType<CreateBehavior>().flyCamEnable == false)
         {
-            print(resetTransform);
+            //print(resetTransform);
             //this.transform.position = resetTransform.position;
             //this.transform.rotation = resetTransform.rotation;
             //this.transform.localScale = resetTransform.localScale;
