@@ -10,6 +10,7 @@ TagManager:
   - sad
   - backtight
   - backloose
+  - test
   layers:
   - Default
   - TransparentFX
