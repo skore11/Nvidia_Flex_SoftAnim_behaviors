@@ -52,8 +52,8 @@ namespace uFlex
             //     Set appropriate behavior/change box collider position/change iterations or solver substeps
             if (assignDeform)
             {
-                print(pInd);
-                print(pVect);
+                //print(pInd);
+                //print(pVect);
                 deformParticle(flexCont, pInd, pVect);
                 assignDeform = false;
             }
@@ -67,8 +67,8 @@ namespace uFlex
             //for now just creating a function that does that
             foreach (var i in localBehavior[change.options[change.value].text])
             {
-                print(i.Key);
-                print(i.Value);
+                //print(i.Key);
+                //print(i.Value);
                 pInd = i.Key;
                 pVect = i.Value;
                 assignDeform = true;  

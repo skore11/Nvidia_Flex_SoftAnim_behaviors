@@ -168,7 +168,8 @@ public class FlexAnimation : FlexProcessor
     public SkinnedMeshRenderer skinnedMeshRenderer;
     private FlexShapeMatching flexShapeMatching;
     private bool firstRun = true;
-    private Vector3[] particlePositions; // world particle positions , ###can be substitued with MassSpawner positions, or initializerfor _positions in MassSpringSystem ####
+    //private Vector3[] particlePositions;
+    public Vector3[] particlePositions;
     public bool drawVertMapAsset = false;
     public GameObject shapeMatchingGO;
     
@@ -186,6 +187,7 @@ public class FlexAnimation : FlexProcessor
 
         if (flexShapeMatching == null)
             flexShapeMatching = shapeMatchingGO.GetComponent<FlexShapeMatching>();
+        //print(particlePositions.Length);
     }
 
     public override void PreContainerUpdate(FlexSolver solver, FlexContainer cntr, FlexParameters parameters)
@@ -222,6 +224,7 @@ public class FlexAnimation : FlexProcessor
             }
 
             particlePositions = new Vector3[vertMapAsset.particleRestPositions.Count];
+            print(particlePositions.Length);
             //Debug.Log(this.skinnedMeshRenderer.name);
             UpdateParticlePositions();
 
@@ -244,6 +247,7 @@ public class FlexAnimation : FlexProcessor
     public void UpdateParticlePositions()
     {
         //Debug.Log("particle positions length: " + particlePositions.Length);
+        //print(particlePositions.Length);
         for (int i = 0; i < particlePositions.Length; i++)
         {
             particlePositions[i] = Vector3.zero;
@@ -260,12 +264,18 @@ public class FlexAnimation : FlexProcessor
                 //print(particlePositions[vw.index]);
             }
         }
+
         //Debug.Log(vertMapAsset.particleNodeWeights.Length);
         // Now convert each point into local coordinates of this object.
         for (int i = 0; i < particlePositions.Length; i++)
         {
             particlePositions[i] = transform.InverseTransformPoint(particlePositions[i]);
         }
+        //print("Particle POS:" + particlePositions[1]);
+
+
+       
+
     }
 
     private void MatchShapes()
@@ -386,22 +396,23 @@ public class FlexAnimation : FlexProcessor
 
     public virtual void OnDrawGizmos()
     {
+
         if (drawVertMapAsset && vertMapAsset != null)
         {
             float boxSize = 0.2f;
-            /*
-            Gizmos.color = Color.red;
-            foreach (Vector3 vert in vertMapAssetBuilder._cachedVertices)
-            {
-                Gizmos.DrawCube(vert, new Vector3(boxSize, boxSize, boxSize));
-            }
- 
-            Gizmos.color = Color.blue;
-            foreach (Vector3 vert in vertMapAssetBuilder._uniqueParticlePositions)
-            {
-                Gizmos.DrawCube(vert, new Vector3(boxSize, boxSize, boxSize));
-            }
-            */
+
+            //Gizmos.color = Color.red;
+            //foreach (Vector3 vert in vertMapAssetBuilder._cachedVertices)
+            //{
+            //    Gizmos.DrawCube(vert, new Vector3(boxSize, boxSize, boxSize));
+            //}
+
+            //Gizmos.color = Color.blue;
+            //foreach (Vector3 vert in vertMapAssetBuilder._uniqueParticlePositions)
+            //{
+            //    Gizmos.DrawCube(vert, new Vector3(boxSize, boxSize, boxSize));
+            //}
+
 
             if (particlePositions != null)
             {
@@ -413,6 +424,7 @@ public class FlexAnimation : FlexProcessor
             }
 
         }
+
     }
 
 }

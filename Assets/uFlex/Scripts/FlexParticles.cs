@@ -56,7 +56,7 @@ namespace uFlex
 
         public int m_particlesIndex = -1;
 
-        [HideInInspector]
+        //[HideInInspector]
         public Particle[] m_particles;              //!< Local space particle positions, x,y,z,1/mass
 
         [HideInInspector]

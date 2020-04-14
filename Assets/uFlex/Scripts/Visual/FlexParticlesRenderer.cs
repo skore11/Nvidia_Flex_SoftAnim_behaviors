@@ -96,6 +96,7 @@ namespace uFlex
                 {
                     tmpPos[i] = transform.TransformPoint(m_flexParticles.m_particles[i].pos);
                 }
+                //print("temp POS " + tmpPos[1]);
                 m_posBuffer.SetData(tmpPos);
             }       
 

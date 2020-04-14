@@ -48,7 +48,7 @@ using uFlex;
 
     //public InputField myinputfield;
         public FlyCamera flyCam;
-        private Transform reset;
+        private Vector3 reset;
         public bool flyCamEnable = false;
         private FlexPlayerController playerController;
 
@@ -59,7 +59,7 @@ using uFlex;
              //flyCam = FindObjectOfType<FlyCamera>();
             playerController = FindObjectOfType<FlexPlayerController>();
             //reset = flyCam.resetTransform;
-            //print(reset.position);
+            //print(flyCam.resetTransform);
         }
 
 
@@ -85,7 +85,7 @@ using uFlex;
                 {
                     turnOffAnim = false;
                     doneMoving = false;
-                    flyCamEnable = false;
+                    
                     //print(reset.position);
                     playerController.enabled = true;
                 }
@@ -108,9 +108,9 @@ using uFlex;
                 xmlserializer.Serialize(file, labeledBehavior);
                 file.Flush();
                 file.Close();
-                
-                //JSONSerializer.Save<Dictionary<int, Vector3>>("test", behavior);
-                if (behaviorName != null)
+                flyCamEnable = false;
+            //JSONSerializer.Save<Dictionary<int, Vector3>>("test", behavior);
+            if (behaviorName != null)
                 {
                     print(behaviorName.text);
                 }

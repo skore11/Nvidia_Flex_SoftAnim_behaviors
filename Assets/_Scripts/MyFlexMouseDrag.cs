@@ -21,6 +21,7 @@ public class MyFlexMouseDrag : FlexMouseDrag
                 //print(m_mouseParticle);
                 //print(m_mousePos);
                 //this.GetComponent<CreateBehavior>().behavior.dictionary.Add(m_mouseParticle, mousePos);
+                //TODO: check if the labeled behavior already contains a behavior and append to that behavior
                 SerializableMap<int, Vector3> tempIVD = new SerializableMap<int, Vector3>();
                 tempIVD.Add(m_mouseParticle, m_mousePos);
                 this.GetComponent<CreateBehavior>().labeledBehavior.Add(this.GetComponent<CreateBehavior>().behaviorName.text, tempIVD);

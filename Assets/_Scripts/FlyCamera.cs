@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class FlyCamera : MonoBehaviour
 {
-
+    public Camera cam;
 
     float mainSpeed = 100.0f; //regular speed
     float shiftAdd = 250.0f; //multiplied by how long shift is held.  Basically running
@@ -15,11 +15,19 @@ public class FlyCamera : MonoBehaviour
     private Vector3 lastMouse = new Vector3(255, 255, 255); //kind of in the middle of the screen, rather than at the top (play)
     private float totalRun = 1.0f;
 
-    public Matrix4x4 resetTransform;
+    //public Matrix4x4 resetTransform;
+    private Vector3 resetPos;
+    private Quaternion resetRot;
+    private Vector3 resetScale;
 
-    void Awake()
+    void Start()
     {
-        resetTransform = FindObjectOfType<Camera>().GetComponent<Transform>().localToWorldMatrix ;
+        //resetTransform = FindObjectOfType<Camera>().GetComponent<Transform>().localToWorldMatrix ;
+        //resetTransform = cam.transform.position;
+        resetPos = cam.transform.position;
+        resetRot = cam.transform.rotation;
+        resetScale = cam.transform.localScale;
+        
     }
 
     void Update()
@@ -73,6 +81,10 @@ public class FlyCamera : MonoBehaviour
         if (FindObjectOfType<CreateBehavior>().flyCamEnable == false)
         {
             //print(resetTransform);
+            //cam.transform.position = resetTransform;
+            cam.transform.position = resetPos;
+            cam.transform.rotation = resetRot;
+            cam.transform.localScale = resetScale;
             //this.transform.position = resetTransform.position;
             //this.transform.rotation = resetTransform.rotation;
             //this.transform.localScale = resetTransform.localScale;
