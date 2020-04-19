@@ -48,13 +48,6 @@ ExportedObj/
 *.pdb.meta
 *.mdb.meta
 
-# Tensorflow Sharp Files
-/Assets/ML-Agents/Plugins/Android*
-/Assets/ML-Agents/Plugins/iOS*
-/Assets/ML-Agents/Plugins/Computer*
-/Assets/ML-Agents/Plugins/System*
-/Assets/ML-Agents/Plugins/Protobuffer*
-
 # Unity3D generated file on crash reports
 sysinfo.txt
 
