@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using MLAgents;
+using MLAgents.Sensors;
+using MLAgents.SideChannels;
 //using NVIDIA.Flex;
 using uFlex;
 
@@ -73,7 +75,7 @@ public class FlexAgent : Agent
             //check = false;
         }
 
-       
+
         //check = true;
         //print("flex Particle POS:" + flexParticles.m_particles[1].pos);
         //print("Particle POS:" + flexAnim.particlePositions[1]);
@@ -86,9 +88,9 @@ public class FlexAgent : Agent
     /// <summary>
     /// Collects observations which correspond to all the particles in the Flex GameObject (positions, masses, velocities)
     /// </summary>
-    public override void CollectObservations()
-	{
-		//foreach (var flexObject in academy.flexContainer.m_flexGameObjects)
+    public override void CollectObservations(VectorSensor sensor)
+    {
+    	//foreach (var flexObject in academy.flexContainer.m_flexGameObjects)
 		//{
 		//	for (int i = 0; i < flexObject.m_particles.Length; i++) 
 		//	{
@@ -102,10 +104,11 @@ public class FlexAgent : Agent
         for (int i = 0; i < flexParticles.m_particles.Length; i++)
         {
             
-            AddVectorObs(flexParticles.m_particles[i].pos);
+            sensor.AddObservation(flexParticles.m_particles[i].pos);
         }
-
-		FillUpOberservationVectorWithDummyValue(-1.0f);
+        // TODO: this does not exist anymore in the sensor class:
+		//FillUpOberservationVectorWithDummyValue(-1.0f);
+        // TODO: check up if filling up with dummy values is still needed or even recommended!
 	}
 
 	/// <summary>
@@ -202,8 +205,7 @@ public class FlexAgent : Agent
     /// Executes the action specified by the brain.
     /// </summary>
     /// <param name="vectorAction">The float action vector.</param>
-    /// <param name="textAction">The string text action.</param>
-    void ExecuteAction(float[] vectorAction, string textAction)
+    void ExecuteAction(float[] vectorAction)
 	{
 		// Actions, size = 2
 		Vector3 controlSignal = Vector3.zero;
@@ -222,15 +224,14 @@ public class FlexAgent : Agent
         
 	}
 
-	/// <summary>
-	/// Agent action. Specifies rewards and executes the action specified by the brain.
-	/// </summary>
-	/// <param name="vectorAction">The float action vector.</param>
-	/// <param name="textAction">The string text action.</param>
-	public override void AgentAction(float[] vectorAction, string textAction)
+    /// <summary>
+    /// Agent action. Specifies rewards and executes the action specified by the brain.
+    /// </summary>
+    /// <param name="vectorAction">The float action vector.</param>
+    public override void OnActionReceived(float[] vectorAction)
 	{
 		AddAgentRewards();
-		ExecuteAction(vectorAction, textAction);
+		ExecuteAction(vectorAction);
 	}
 
 

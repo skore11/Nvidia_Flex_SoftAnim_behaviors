@@ -5,7 +5,14 @@ using MLAgents;
 //using NVIDIA.Flex;
 using uFlex;
 
-public class FlexAcademy : Academy {
+
+// TODO: the MLAgents.Academy class is now a singleton that cannot be subclassed, so this code is outdated.
+// See here for how it should be designed now:
+// https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Learning-Environment-Design.md
+// Most of the code here should probably move into the FlexAgent class where appropriate or be moved into
+// an EnvironmentReset method that can be registered with Academy.Instance.OnEnvironmentReset.
+
+public class FlexAcademy {   // : Academy {
 	/// <summary>
 	/// Maximum number of particles in scene.
 	/// </summary>
@@ -44,7 +51,7 @@ public class FlexAcademy : Academy {
     private void Start()
     {
         maxParticles = flexContainer.m_activeParticlesCount;
-        print(maxParticles);
+        //print(maxParticles);
     }
 
     void InitializeFlexContainer(int maxParticles, float particleRadius)
@@ -126,13 +133,13 @@ public class FlexAcademy : Academy {
 	void SetObservationVectorSize()
 	{
         //print(maxParticles);
-		agent.brain.brainParameters.vectorObservationSize = maxParticles/* * particleDimension*/;
+//		agent.brain.brainParameters.vectorObservationSize = maxParticles/* * particleDimension*/;
 	}
 
 	/// <summary>
 	/// Initializes academy by initializing a new flex container, target and agent.
 	/// </summary>
-	public override void InitializeAcademy()
+	public void InitializeAcademy()
 	{
 		InitializeFlexContainer(maxParticles, particleRadius);
 		//InitializeTarget();
@@ -143,7 +150,7 @@ public class FlexAcademy : Academy {
 	/// <summary>
 	/// Resets the academy by teleporting the target to a new random location and resetting the number of steps.
 	/// </summary>
-	public override void AcademyReset()
+	public void AcademyReset()
 	{
 		//target.GetComponent<FlexActor>().Teleport
 		//(new Vector3(NewRandomPosition(), 0.5f, NewRandomPosition()),
