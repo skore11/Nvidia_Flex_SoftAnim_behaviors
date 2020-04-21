@@ -30,7 +30,12 @@ public class FlexAgent : Agent
     public float speed = 10;
 
     public bool check = false;
-    
+
+    float startTime;
+
+    [Range(0.0f, 0.35f)]
+    public float dir;
+
     /// <summary>
     /// Agent reset. Teleports the agent back to the center and the target to a new random position.
     /// </summary>
@@ -51,25 +56,42 @@ public class FlexAgent : Agent
 
     private void Start()
     {
-        print(flexParticles.m_particles.Length);
-        print(flexAnim.particlePositions.Length);
+        //print(flexParticles.m_particles.Length);
+        //print(flexAnim.particlePositions.Length);
         //print(flexParticles.m_particles[1].pos);
         //GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
         //cube.transform.position = flexParticles.m_particles[1].pos;
         //cube.transform.localScale = new Vector3(1.25f, 1.5f, 1);
-        
+        startTime = Time.time;
     }
 
     private void Update()
     {
         if (check)
         {
-            for (int i = 0; i < flexParticles.m_particles.Length/2; i++)
+
+            //foreach (var go in academy.flexContainer.m_flexGameObjects)
+            //{
+            //    print(go.name);
+            for (int i = 0; i < flexParticles.m_particles.Length; i++)
             {
-                flexParticles.m_particles[i].pos = flexAnim.particlePositions[i];
-
-
+                if (flexParticles.m_particles[i].pos != flexAnim.particlePositions[i])
+                {
+                    float dist = Vector3.Distance(flexParticles.m_particles[i].pos, flexAnim.particlePositions[i]);
+                    float distCovered = (Time.time - startTime) * speed;
+                    float fractionOfJourney = distCovered / dist;
+                    flexParticles.m_particles[i].pos = Vector3.Lerp(flexParticles.m_particles[i].pos, flexAnim.particlePositions[i], dir * fractionOfJourney);
+                    Debug.DrawLine(flexParticles.m_particles[i].pos, flexAnim.particlePositions[i], Color.green);
+            //        //ApplyForce(flexParticles.m_particles[i].pos, flexAnim.particlePositions[i], flexParticles.m_particles[i].invMass);
+            //        //print(ApplyForce(flexParticles.m_particles[i].pos, flexAnim.particlePositions[i], flexParticles.m_particles[i].invMass));
+                }
+            //testMatch.MatchAnim(flexParticles, flexAnim, startTime, speed, dir);
+            //testMatch.PostContainerUpdate(flSolver, flContainer, flParams);
             }
+
+
+            //}
+
             //flexParticles.m_particles[1].pos = flexAnim.particlePositions[1];
             //flexParticles.m_particles[2].pos = flexAnim.particlePositions[2];
             //check = false;
@@ -84,7 +106,7 @@ public class FlexAgent : Agent
 
     }
 
-  
+
     /// <summary>
     /// Collects observations which correspond to all the particles in the Flex GameObject (positions, masses, velocities)
     /// </summary>

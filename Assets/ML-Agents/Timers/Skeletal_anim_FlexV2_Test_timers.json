@@ -1,0 +1,1 @@
+{"count":1,"gauges":{},"self":2.6459998,"total":2.649027,"children":{"AgentSendState":{"count":178,"self":0.0009994,"total":0.0009994,"children":null},"DecideAction":{"count":178,"self":0.001001,"total":0.001001,"children":null},"AgentAct":{"count":178,"self":0,"total":0,"children":null}}}

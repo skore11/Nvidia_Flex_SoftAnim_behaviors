@@ -412,7 +412,33 @@ public class FlexAnimation : FlexProcessor
             //{
             //    Gizmos.DrawCube(vert, new Vector3(boxSize, boxSize, boxSize));
             //}
+            //Gizmos.color = Color.red;
+            //foreach (WeightList wList in vertMapAsset.particleNodeWeights)
+            //{
+            //    foreach (VertexWeight vw in wList.weights)
+            //    {
+            //        Transform t = skinnedMeshRenderer.bones[wList.boneIndex];
+            //        //Debug.Log(particlePositions[vw.index]);
+            //        particlePositions[vw.index] += t.localToWorldMatrix.MultiplyPoint3x4(vw.localPosition) * vw.weight;
+            //        Gizmos.DrawCube(particlePositions[vw.index], new Vector3(boxSize, boxSize, boxSize));
+            //    }
+            //}
 
+            //if (vertMapAsset.particleRestPositions != null)
+            //{
+            //    Gizmos.color = Color.red;
+            //    foreach (Vector3 vert in vertMapAsset.particleRestPositions)
+            //    {
+            //        Gizmos.DrawCube(vert, new Vector3(boxSize, boxSize, boxSize));
+            //    }
+            //}
+
+
+            //Gizmos.color = Color.red;
+            //foreach (Vector3 vert in skinnedMeshRenderer.sharedMesh.vertices)
+            //{
+            //    Gizmos.DrawCube(vert, new Vector3(boxSize, boxSize, boxSize));
+            //}
 
             if (particlePositions != null)
             {
