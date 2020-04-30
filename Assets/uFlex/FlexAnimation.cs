@@ -224,7 +224,7 @@ public class FlexAnimation : FlexProcessor
             }
 
             particlePositions = new Vector3[vertMapAsset.particleRestPositions.Count];
-            print(particlePositions.Length);
+            //print(particlePositions.Length);
             //Debug.Log(this.skinnedMeshRenderer.name);
             UpdateParticlePositions();
 

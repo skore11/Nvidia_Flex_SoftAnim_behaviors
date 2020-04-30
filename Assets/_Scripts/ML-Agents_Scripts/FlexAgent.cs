@@ -7,12 +7,14 @@ using MLAgents.SideChannels;
 //using NVIDIA.Flex;
 using uFlex;
 
+
+
 public class FlexAgent : Agent
 {	
 	/// <summary>
 	/// The flex academy. Contains the flex container and controls the environment.
 	/// </summary>
-	public FlexAcademy academy;
+	//public Academy academy;
 
     /// <summary>
     /// Flex animation to match.
@@ -24,85 +26,65 @@ public class FlexAgent : Agent
     /// </summary>
     public FlexParticles flexParticles;
 
+    public FlexContainer flContainer;
+
+    public FlexSolver flSolver;
+
+    public FlexParameters flParams;
+
+    private float[] temp;
+
+    private ApplyFlexReward myflexReward;
     /// <summary>
     /// The speed. Proportional to how fast the agent can move.
     /// </summary>
-    public float speed = 10;
 
     public bool check = false;
 
     float startTime;
 
-    [Range(0.0f, 0.35f)]
-    public float dir;
 
     /// <summary>
     /// Agent reset. Teleports the agent back to the center and the target to a new random position.
     /// </summary>
-    //public override void AgentReset()
-    //{
-    //	academy.AcademyReset ();
-
-    //	if (this.transform.position.y < -1.0)
-    //	{
-    //		// The agent fell
-    //		GetComponent<FlexActor>().Teleport(new Vector3(0f, 0.5f, 0), Quaternion.Euler(Vector3.zero));
-    //	}
-    //}
-
-    struct ImpulseInfo { public Vector3 impulse; public int particle; }
-    List<ImpulseInfo> m_impulses = new List<ImpulseInfo>();
-
-
-    private void Start()
+    public void Awake()
     {
-        //print(flexParticles.m_particles.Length);
-        //print(flexAnim.particlePositions.Length);
-        //print(flexParticles.m_particles[1].pos);
-        //GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        //cube.transform.position = flexParticles.m_particles[1].pos;
-        //cube.transform.localScale = new Vector3(1.25f, 1.5f, 1);
-        startTime = Time.time;
+        myflexReward = this.GetComponent<ApplyFlexReward>();
+        //test.enabled = false;
+        Academy.Instance.OnEnvironmentReset += EnvironmentReset;
+
     }
 
-    private void Update()
+
+    public void EnvironmentReset()
     {
-        if (check)
-        {
+        //    //if (flParams.m_numIterations > 20)
+        //    //{
+        //    print(flSolver);
+        //    print(flContainer);
+        //    
+        myflexReward.iterations = Random.Range(0, 5);
+        //test.FlexStart(flSolver, flContainer, flParams);
 
-            //foreach (var go in academy.flexContainer.m_flexGameObjects)
-            //{
-            //    print(go.name);
-            for (int i = 0; i < flexParticles.m_particles.Length; i++)
-            {
-                if (flexParticles.m_particles[i].pos != flexAnim.particlePositions[i])
-                {
-                    float dist = Vector3.Distance(flexParticles.m_particles[i].pos, flexAnim.particlePositions[i]);
-                    float distCovered = (Time.time - startTime) * speed;
-                    float fractionOfJourney = distCovered / dist;
-                    flexParticles.m_particles[i].pos = Vector3.Lerp(flexParticles.m_particles[i].pos, flexAnim.particlePositions[i], dir * fractionOfJourney);
-                    Debug.DrawLine(flexParticles.m_particles[i].pos, flexAnim.particlePositions[i], Color.green);
-            //        //ApplyForce(flexParticles.m_particles[i].pos, flexAnim.particlePositions[i], flexParticles.m_particles[i].invMass);
-            //        //print(ApplyForce(flexParticles.m_particles[i].pos, flexAnim.particlePositions[i], flexParticles.m_particles[i].invMass));
-                }
-            //testMatch.MatchAnim(flexParticles, flexAnim, startTime, speed, dir);
-            //testMatch.PostContainerUpdate(flSolver, flContainer, flParams);
-            }
+        print("reset:" + flParams.m_numIterations);
+        //    //}
+
+    }
 
 
-            //}
 
-            //flexParticles.m_particles[1].pos = flexAnim.particlePositions[1];
-            //flexParticles.m_particles[2].pos = flexAnim.particlePositions[2];
-            //check = false;
-        }
-
-
-        //check = true;
-        //print("flex Particle POS:" + flexParticles.m_particles[1].pos);
-        //print("Particle POS:" + flexAnim.particlePositions[1]);
-
-        //
+    public void Update()
+    {
+        //print("update");
+        //ExecuteAction(temp);
+        OnActionReceived(temp);
+    //    //    //
+    //    test.PostContainerUpdate(flSolver, flContainer, flParams);
+    //    if (flParams.m_numIterations >= 25)
+    //    {
+    //        EndEpisode();
+    //        EnvironmentReset();
+    //    }
 
     }
 
@@ -112,139 +94,58 @@ public class FlexAgent : Agent
     /// </summary>
     public override void CollectObservations(VectorSensor sensor)
     {
-    	//foreach (var flexObject in academy.flexContainer.m_flexGameObjects)
-		//{
-		//	for (int i = 0; i < flexObject.m_particles.Length; i++) 
-		//	{
-  //              AddVectorObs(flexObject.m_particles[i].pos);
-  //  //            AddVectorObs(actor.particles [i]);
-		//		//AddVectorObs(actor.velocities [i]);
-		//		//AddVectorObs(actor.id);
-		//	}
-		//}
 
-        for (int i = 0; i < flexParticles.m_particles.Length; i++)
-        {
-            
-            sensor.AddObservation(flexParticles.m_particles[i].pos);
-        }
+        sensor.AddObservation(flParams.m_numIterations);
         // TODO: this does not exist anymore in the sensor class:
 		//FillUpOberservationVectorWithDummyValue(-1.0f);
         // TODO: check up if filling up with dummy values is still needed or even recommended!
 	}
 
-	/// <summary>
-	/// Computes average velocity magnitude.
-	/// </summary>
-	/// <param name="velocities">List of 3D velocites.</param>
-	float ComputeAverageVelocityMagnitude(Vector3[] velocities)
-	{
-		Vector3 averageVelocity = Vector3.zero;
 
-		foreach(Vector3 velocity in velocities)
-		{
-			averageVelocity.x += velocity.x;
-			averageVelocity.y += velocity.y;
-			averageVelocity.z += velocity.z;
-		}	
-		averageVelocity.x /= velocities.Length;
-		averageVelocity.y /= velocities.Length;
-		averageVelocity.z /= velocities.Length;
-
-		return averageVelocity.magnitude;
-	}
 
 	/// <summary>
 	/// Specifies the reward setup of the match animation task.
 	/// </summary>
 	void AddAgentRewards()
 	{
-        //// Target was pushed.
-        //if (ComputeAverageVelocityMagnitude(academy.target.GetComponent<FlexActor>().velocities) > 0.1f)
-        //{
-        //	AddReward(1.0f);
-        //}
+        print("Adding agent reward");
 
-        //// Time penalty
-        //AddReward(-0.05f);
 
-        //// Agent or target fell off platform
-        //if (this.transform.position.y < -1.0 || 
-        //	academy.target.transform.position.y < -1.0)
-        //{
-        //	AddReward(-1.0f);
-        //	Done();
-        //}
-
-        
-    }
-
-    public void ApplyImpulse(Vector3 _impulse, int _particle = -1)
-    {
-        ImpulseInfo info;
-        info.impulse = _impulse;
-        info.particle = _particle;
-        m_impulses.Add(info);
-    }
-
-    void CheckPos(float mag1)
-    {
-        
-            for (int j = 0; j < flexAnim.particlePositions.Length; j++)
-            {
-
-            //float mag2 = Vector3.Magnitude(flexAnim.particlePositions[j]);
-            //if (mag1 / mag2 >= 0.99)
-            //{
-            //    print(j);
-            //}
-
-            //print("index:" + j + "Particle local POS:" + flexParticles.m_particles[j].pos);
-            //print("index:" + j + "anim local POS:" + flexAnim.particlePositions[j]);
-            //Debug.DrawLine(flexParticles.m_particles[j].pos, flexAnim.particlePositions[j], Color.green);
+        if (myflexReward.addReward)
+        {
+            AddReward(1.0f);
+            myflexReward.addReward = false;
         }
-        
+
+        if (myflexReward.addReward1)
+        {
+            AddReward(-0.05f);
+            myflexReward.addReward1 = false;
+        }
     }
 
-    private int FindNearestIndex(Vector3 flexParticle, Vector3[] animParticles)
-    {
-        float nearestDist = 10000f;
-        int nearestIndex = -1;
-            for (int j = 0; j < animParticles.Length; j++)
-            {
-            float dist = Vector3.Distance(flexParticle, animParticles[j]);
-            if (dist < nearestDist)
-            {
-                nearestDist = dist;
-                nearestIndex = j;
-            }
-        }
-        return nearestIndex;
-        
-    }
+    
 
     /// <summary>
     /// Executes the action specified by the brain.
     /// </summary>
     /// <param name="vectorAction">The float action vector.</param>
-    void ExecuteAction(float[] vectorAction)
+   public void ExecuteAction(float[] vectorAction)
 	{
-		// Actions, size = 2
-		Vector3 controlSignal = Vector3.zero;
-		controlSignal.x = vectorAction[0];
-		controlSignal.z = vectorAction[1];
-        foreach (var flexObject in academy.flexContainer.m_flexGameObjects)
+        check = true;
+        print("Execute action");
+
+        myflexReward.PostContainerUpdate(flSolver, flContainer, flParams);
+        //could add a time limit here 
+        if (flParams.m_numIterations >= 25)
         {
-            for (int i = 0; i < flexObject.m_particles.Length; i++)
-            {
-                if (flexObject.m_particles[i].pos != flexAnim.particlePositions[i])
-                {
-                    ApplyImpulse(controlSignal * speed);
-                }
-            }
+            print("test" + flParams.m_numIterations);
+            EndEpisode();
+            EnvironmentReset();
+            check = false;
         }
-        
-	}
+
+    }
 
     /// <summary>
     /// Agent action. Specifies rewards and executes the action specified by the brain.
@@ -252,8 +153,11 @@ public class FlexAgent : Agent
     /// <param name="vectorAction">The float action vector.</param>
     public override void OnActionReceived(float[] vectorAction)
 	{
+        
+        print("Action received");
 		AddAgentRewards();
-		ExecuteAction(vectorAction);
+        //temp = vectorAction;
+        ExecuteAction(vectorAction);
 	}
 
 
