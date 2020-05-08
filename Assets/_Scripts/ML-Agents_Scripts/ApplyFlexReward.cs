@@ -36,22 +36,17 @@ public class ApplyFlexReward : FlexProcessor
                 addReward = true;
             }
 
-            if (parameters.m_numIterations < 15)
+            if (parameters.m_numIterations < 15 || parameters.m_numIterations > 20)
             {
-                //AddReward(-0.05f);
                 addReward1 = true;
-                parameters.m_numIterations += 1;
             }
 
-            if (parameters.m_numIterations > 20)
+            if (parameters.m_numIterations <= 25)
             {
-                //AddReward(-0.05f);
-                addReward1 = true;
-                parameters.m_numIterations -= 1;
+                print(parameters.m_numIterations);
+                iterations += 1;
             }
 
-
-            
         }
         
     }

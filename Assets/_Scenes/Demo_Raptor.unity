@@ -2139,6 +2139,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flex
       objectReference: {fileID: 0}
+    - target: {fileID: 7217115240533284317, guid: a80f9a399a281154c83d5076f8113501,
+        type: 3}
+      propertyPath: m_numIterations
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 7217115240533284315, guid: a80f9a399a281154c83d5076f8113501,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2193,11 +2198,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7217115240533284317, guid: a80f9a399a281154c83d5076f8113501,
-        type: 3}
-      propertyPath: m_numIterations
-      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a80f9a399a281154c83d5076f8113501, type: 3}
@@ -3909,21 +3909,6 @@ PrefabInstance:
       propertyPath: behaviorName
       value: 
       objectReference: {fileID: 1566461361}
-    - target: {fileID: 7860715050118819353, guid: 1e1353d45b1e42241a16b12352a214b6,
-        type: 3}
-      propertyPath: skinnedMeshRenderer
-      value: 
-      objectReference: {fileID: 1704166693}
-    - target: {fileID: 7860715050118819353, guid: 1e1353d45b1e42241a16b12352a214b6,
-        type: 3}
-      propertyPath: rebuildVertMapAsset
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7860715050118819353, guid: 1e1353d45b1e42241a16b12352a214b6,
-        type: 3}
-      propertyPath: drawVertMapAsset
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7860715050118819354, guid: 1e1353d45b1e42241a16b12352a214b6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3979,6 +3964,36 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7860715050118819353, guid: 1e1353d45b1e42241a16b12352a214b6,
+        type: 3}
+      propertyPath: skinnedMeshRenderer
+      value: 
+      objectReference: {fileID: 1704166693}
+    - target: {fileID: 7860715050118819353, guid: 1e1353d45b1e42241a16b12352a214b6,
+        type: 3}
+      propertyPath: rebuildVertMapAsset
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7860715050118819353, guid: 1e1353d45b1e42241a16b12352a214b6,
+        type: 3}
+      propertyPath: drawVertMapAsset
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7860715050118819355, guid: 1e1353d45b1e42241a16b12352a214b6,
+        type: 3}
+      propertyPath: m_interactionType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7860715050118819355, guid: 1e1353d45b1e42241a16b12352a214b6,
+        type: 3}
+      propertyPath: m_drawRest
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7860715050118819355, guid: 1e1353d45b1e42241a16b12352a214b6,
+        type: 3}
+      propertyPath: m_drawDebug
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7860715050118819566, guid: 1e1353d45b1e42241a16b12352a214b6,
         type: 3}
       propertyPath: flexSolver
@@ -4004,21 +4019,6 @@ PrefabInstance:
       propertyPath: flexCont
       value: 
       objectReference: {fileID: 97323731}
-    - target: {fileID: 7860715050118819355, guid: 1e1353d45b1e42241a16b12352a214b6,
-        type: 3}
-      propertyPath: m_interactionType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7860715050118819355, guid: 1e1353d45b1e42241a16b12352a214b6,
-        type: 3}
-      propertyPath: m_drawRest
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7860715050118819355, guid: 1e1353d45b1e42241a16b12352a214b6,
-        type: 3}
-      propertyPath: m_drawDebug
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7860715050118819358, guid: 1e1353d45b1e42241a16b12352a214b6,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -4030,6 +4030,11 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7860715050118819359, guid: 1e1353d45b1e42241a16b12352a214b6,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7860715050118819553, guid: 1e1353d45b1e42241a16b12352a214b6,
         type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -4064,11 +4069,6 @@ PrefabInstance:
       propertyPath: m_lock
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7860715050118819553, guid: 1e1353d45b1e42241a16b12352a214b6,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7860715050118819565, guid: 1e1353d45b1e42241a16b12352a214b6,
         type: 3}
       propertyPath: m_Enabled
@@ -4096,6 +4096,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gotXML: 0
+  flexObject: {fileID: 1216910891}
 --- !u!1 &1221108176
 GameObject:
   m_ObjectHideFlags: 0

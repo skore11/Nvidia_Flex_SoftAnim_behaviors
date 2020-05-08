@@ -248,8 +248,13 @@ public class FlexAnimation : FlexProcessor
     {
         //Debug.Log("particle positions length: " + particlePositions.Length);
         //print(particlePositions.Length);
+        float startTime = Time.time;
+        Vector3[] initial = new Vector3[particlePositions.Length];
+
         for (int i = 0; i < particlePositions.Length; i++)
         {
+            //print("index:" + i + "Pos:" + particlePositions[i]);
+            initial[i] = particlePositions[i];
             particlePositions[i] = Vector3.zero;
         }
 
@@ -267,13 +272,21 @@ public class FlexAnimation : FlexProcessor
 
         //Debug.Log(vertMapAsset.particleNodeWeights.Length);
         // Now convert each point into local coordinates of this object.
+        
+        Vector3[] final = new Vector3[particlePositions.Length];
         for (int i = 0; i < particlePositions.Length; i++)
         {
+            final[i] = particlePositions[i];
             particlePositions[i] = transform.InverseTransformPoint(particlePositions[i]);
         }
         //print("Particle POS:" + particlePositions[1]);
 
-
+        //Calculate velocity here:
+        //for (int i = 0; i < particlePositions.Length; i++)
+        //{
+           
+        //    print("index:" + i + "Velocity:" + (final[i] /*- initial[i]*/) / Time.deltaTime/*(Time.time - startTime)*/);
+        //}
        
 
     }

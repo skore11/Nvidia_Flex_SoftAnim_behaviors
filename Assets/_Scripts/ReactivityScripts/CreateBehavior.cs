@@ -29,8 +29,8 @@ using uFlex;
 
         public InputField behaviorName;
 
-        //private bool once;
-
+    //private bool once;
+        public GetBehaviors getBehaviors;
         
         //public IntVector3Dictionary behavior = new IntVector3Dictionary();
         //public IntVector3Dictionary behavior = new IntVector3Dictionary();
@@ -134,10 +134,15 @@ using uFlex;
                 print(var.Value);
             }
 
-            this.GetComponent<GetBehaviors>().localContainer = container;
-            this.GetComponent<GetBehaviors>().gotXML = true;
 
+            //this.GetComponent<GetBehaviors>().localContainer = container;
+            //this.GetComponent<GetBehaviors>().gotXML = true;
 
+            getBehaviors.localContainer = container;
+            getBehaviors.gotXML = true;
+
+            //FindObjectOfType<GetBehaviors> ().localContainer = container;
+            //FindObjectOfType<GetBehaviors>().gotXML = true;
             file.Close();
             }
             //store list ofvectors that have changed positions;
@@ -188,13 +193,13 @@ using uFlex;
                 return;
             }
 
-            if (GUI.Button(new Rect(10, 10, 50, 50), "Move particle"))
+            if (GUI.Button(new Rect(10, 10, 100, 30), "Move particle"))
             {
                // Debug.Log("Clicked the button with text");
                 turnOffAnim = true;
             }
 
-            if (GUI.Button(new Rect(10, 70, 50, 50), "Done Moving"))
+            if (GUI.Button(new Rect(10, 70, 100, 30), "Done Moving"))
             {
                 //Debug.Log("Clicked the button with text");
                 doneMoving = true;

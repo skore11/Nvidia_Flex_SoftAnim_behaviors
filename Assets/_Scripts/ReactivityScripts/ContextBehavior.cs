@@ -43,8 +43,11 @@ namespace uFlex
         // Start is called before the first frame update
         public override void PostContainerUpdate(FlexSolver solver, FlexContainer cntr, FlexParameters parameters)
         {
-            flexSolver.m_solverSubSteps = (int) solverSubSteps;
-            flexParams.m_numIterations = (int) numOfIterations;
+            //flexSolver.m_solverSubSteps = (int) solverSubSteps;
+            //flexParams.m_numIterations = (int) numOfIterations;
+
+            solver.m_solverSubSteps = (int)solverSubSteps;
+            parameters.m_numIterations = (int)numOfIterations/2;
 
             //In Child objects
             //if OntriggerEnter(Coll)
@@ -106,9 +109,11 @@ namespace uFlex
 
             void OnGUI()
         {
-            GUI.Label(new Rect(100, 10, 120, 50), "Flex Solver Sub Steps");
+            GUIStyle myStyle = new GUIStyle();
+            myStyle.normal.textColor = Color.black;
+            GUI.Label(new Rect(150, 10, 120, 50), "Flex Solver Sub Steps", myStyle);
             solverSubSteps = GUI.HorizontalSlider(new Rect(100, 50, 120, 50), solverSubSteps, 1.0F, 5.0F);
-            GUI.Label(new Rect(100, 60, 120, 50), "Flex Parameters: Number of iterations");
+            GUI.Label(new Rect(150, 60, 120, 50), "Flex Parameters: Number of iterations",myStyle);
             numOfIterations = GUI.HorizontalSlider(new Rect(100, 100, 120, 50), numOfIterations, 1.0F, 20.0F);
         }
 

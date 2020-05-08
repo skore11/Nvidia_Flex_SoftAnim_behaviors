@@ -35,14 +35,15 @@ public class FlexAgent : Agent
     private float[] temp;
 
     private ApplyFlexReward myflexReward;
+
+    private AffectIterations affectIt;
     /// <summary>
     /// The speed. Proportional to how fast the agent can move.
     /// </summary>
 
     public bool check = false;
 
-    float startTime;
-
+    public bool reset = false;
 
     /// <summary>
     /// Agent reset. Teleports the agent back to the center and the target to a new random position.
@@ -50,6 +51,7 @@ public class FlexAgent : Agent
     public void Awake()
     {
         myflexReward = this.GetComponent<ApplyFlexReward>();
+        
         //test.enabled = false;
         Academy.Instance.OnEnvironmentReset += EnvironmentReset;
 
@@ -64,8 +66,9 @@ public class FlexAgent : Agent
         //    print(flContainer);
         //    
         myflexReward.iterations = Random.Range(0, 5);
-        //test.FlexStart(flSolver, flContainer, flParams);
 
+        //test.FlexStart(flSolver, flContainer, flParams);
+        //reset = true;
         print("reset:" + flParams.m_numIterations);
         //    //}
 
@@ -134,7 +137,7 @@ public class FlexAgent : Agent
 	{
         check = true;
         print("Execute action");
-
+        
         myflexReward.PostContainerUpdate(flSolver, flContainer, flParams);
         //could add a time limit here 
         if (flParams.m_numIterations >= 25)

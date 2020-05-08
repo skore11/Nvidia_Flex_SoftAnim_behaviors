@@ -155,12 +155,20 @@ namespace uFlex
             Flex.SetFence();
             Flex.WaitFence();
 
-            if(Input.GetKeyDown(KeyCode.Space))
+
+            //for (int i = 0; i < m_cntr.m_particlesCount; i++)
+            //{
+            //    print("index:" + i + "velocity:" + m_cntr.m_velocities[i]);
+            //}
+
+
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 Debug.Log("uFlex Scene Reset");
                 for (int i = 0; i < m_cntr.m_particlesCount; i++)
                 {
                     m_cntr.m_particles[i] = m_cntr.m_restParticles[i];
+                   
                     m_cntr.m_velocities[i] = new Vector3();
                 }
             }

@@ -20,13 +20,15 @@ public class GetBehaviors : MonoBehaviour {
     Dropdown m_Dropdown;
     //public Text m_Text;
 
+    public GameObject flexObject;
+
     void Start()
     {
         //localContainer = FindObjectOfType<CreateBehavior>().container;
         gotXML = false;
         
 
-        var comp = GetComponents(typeof(IStorable));
+        var comp = flexObject.GetComponents(typeof(IStorable));
         //Check how many behaviors there are on an Object:
         //Debug.Log(comp.Length);
         m_Dropdown = FindObjectOfType<Dropdown>();
@@ -47,7 +49,7 @@ public class GetBehaviors : MonoBehaviour {
     {
         if (gotXML)
         {
-            this.GetComponent<ContextBehavior>().localBehavior = localContainer;
+            flexObject.GetComponent<ContextBehavior>().localBehavior = localContainer;
             //this.GetComponent<Context>
             foreach (var index in localContainer)
             {
@@ -66,6 +68,8 @@ public class GetBehaviors : MonoBehaviour {
 
     private void OnGUI()
     {
+
+        GUILayout.BeginArea(new Rect((Screen.width) - 200, (Screen.height) - 600, 400, 50));
         foreach (var i in behaviorBounds)
         {
            
@@ -74,13 +78,14 @@ public class GetBehaviors : MonoBehaviour {
             //print(x);
             //Debug.Log(i.Value.ToString());
             Component temp = i.Value;
-            
 
-            if (GUILayout.Button(temp.ToString()))
+
+            if (GUILayout.Button(temp.ToString(), GUILayout.Width(200), GUILayout.Height(25))) 
             {
                 (temp as MonoBehaviour).enabled = true;
             }
       
         }
+        GUILayout.EndArea();
     }
 }

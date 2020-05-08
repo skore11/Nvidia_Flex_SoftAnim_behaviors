@@ -27,7 +27,7 @@ namespace uFlex
                     {
                         m_lockedParticlesIds.Add(i);
                         m_lockedParticlesMasses.Add(cntr.m_particles[i].invMass);
-                        cntr.m_particles[i].invMass = 0.0f;
+                        cntr.m_particles[i].invMass =0.0f;
                     }
                 }
             }

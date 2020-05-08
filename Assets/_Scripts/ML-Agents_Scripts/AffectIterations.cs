@@ -6,15 +6,34 @@ using uFlex;
 
 public class AffectIterations : FlexProcessor
 {
-    // Start is called before the first frame update
-    void Start()
+    public int iterations;
+
+    public FlexAgent m_flAgent;
+
+    public override void PostContainerUpdate(FlexSolver solver, FlexContainer cntr, FlexParameters parameters)
     {
-        
+        parameters.m_numIterations = iterations;
+        if (m_flAgent.reset)
+        {
+            Reset();
+            print("reset");
+        }
+
+        if (m_flAgent.check)
+        {
+            
+            if (iterations <= 25)
+            {
+                print("affect:" + iterations);
+                iterations += 1;
+            }
+        }
+      
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Reset()
     {
-        
+        iterations = Random.Range(0, 5);
     }
 }
+
