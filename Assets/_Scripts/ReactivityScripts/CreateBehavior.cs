@@ -13,15 +13,15 @@ using uFlex;
 
     public class CreateBehavior : FlexProcessor
     {
-        public Texture btnTexture;
+        //public Texture btnTexture;
 
-        private bool turnOffAnim;
+        //private bool turnOffAnim;
 
-        private bool doneMoving;
+        //private bool doneMoving;
 
-        private bool turnOnAnim;
+        //private bool turnOnAnim;
 
-        private bool showAnim;    
+        //private bool showAnim;    
 
         private int mouseParticle;
 
@@ -29,6 +29,7 @@ using uFlex;
 
         public InputField behaviorName;
 
+        
     //private bool once;
         public GetBehaviors getBehaviors;
         
@@ -52,11 +53,13 @@ using uFlex;
         public bool flyCamEnable = false;
         private FlexPlayerController playerController;
 
+        private UIController m_UIController;
 
-
+        private FileStream file;
         void Start()
         {
              //flyCam = FindObjectOfType<FlyCamera>();
+            m_UIController = FindObjectOfType<UIController>();
             playerController = FindObjectOfType<FlexPlayerController>();
             //reset = flyCam.resetTransform;
             //print(flyCam.resetTransform);
@@ -69,7 +72,7 @@ using uFlex;
             //Note: might need to use a Coroutine instead!
 
             //Stop flex animation first then track particle positions for this object;
-            if (turnOffAnim)
+            if (m_UIController.turnOffAnim)
             {
                 flyCamEnable = true;
                 //List<Vector3> templist = null;
@@ -81,10 +84,10 @@ using uFlex;
                 //int x = this.GetComponent<FlexMouseDrag>().m_mouseParticle;
 
 
-                if (doneMoving)
+                if (m_UIController.doneMoving)
                 {
-                    turnOffAnim = false;
-                    doneMoving = false;
+                m_UIController.turnOffAnim = false;
+                m_UIController.doneMoving = false;
                     
                     //print(reset.position);
                     playerController.enabled = true;
@@ -92,7 +95,7 @@ using uFlex;
                 
             }
 
-            if (turnOnAnim)
+            if (m_UIController.turnOnAnim)
             {
                 
                 //Note: need to save the behavior as an asset possibly or JSON?, need to ask stefan.
@@ -102,30 +105,38 @@ using uFlex;
                 // test C# way of serializing:
                 
                 XmlSerializer xmlserializer = new XmlSerializer(labeledBehavior.GetType());
-                FileStream file = File.Open( "C:/Users/siciit/AppData/LocalLow/DefaultCompany/Nvidia_softAnim_trials/labbehaviorTrial2.xml", FileMode.Open, FileAccess.Write);
-                //FileStream file = File.Open(Application.persistentDataPath + "/labbehaviorTrial2.xml", FileMode.Open, FileAccess.Read);
-            //FileStream file = File.Open(Application.persistentDataPath + "/labbehaviorTrial2.xml", FileMode.OpenOrCreate)
+            //FileStream file = File.Open( "C:/Users/siciit/AppData/LocalLow/DefaultCompany/Nvidia_softAnim_trials/labbehaviorTrial2.xml", FileMode.Open, FileAccess.Write);
+            //FileStream file = File.Open(Application.persistentDataPath + "/labbehaviorTrial2.xml", FileMode.Open, FileAccess.Read);
+            if (!System.IO.File.Exists(Application.persistentDataPath + "/labbehaviorTrial3.xml"))
+            {
+               /* FileStream*/ file = File.Open(Application.persistentDataPath + "/labbehaviorTrial3.xml", FileMode.OpenOrCreate, FileAccess.Write);
+            }
+            else
+            {
+                /*FileStream */file = File.Open(Application.persistentDataPath + "/labbehaviorTrial3.xml", FileMode.Open, FileAccess.Write);
+            }
+                
                 xmlserializer.Serialize(file, labeledBehavior);
                 file.Flush();
                 file.Close();
                 flyCamEnable = false;
             //JSONSerializer.Save<Dictionary<int, Vector3>>("test", behavior);
-            if (behaviorName != null)
-                {
-                    print(behaviorName.text);
-                }
+            //if (behaviorName != null)
+            //    {
+            //        print(behaviorName.text);
+            //    }
                 this.GetComponent<FlexAnimation>().enabled = true;
-                turnOnAnim = false;
+            m_UIController.turnOnAnim = false;
           
             }
 
-            if (showAnim)
+            if (m_UIController.showAnim)
             {
-            showAnim = false;
+            m_UIController.showAnim = false;
             XmlSerializer readSerialize = new XmlSerializer(typeof(SerializableMap<string, SerializableMap<int, Vector3>>));
             //FileStream file = new FileStream(Application.persistentDataPath + "/labbehaviorTrial2.xml", FileMode.Open);
-            FileStream file = File.Open("C:/Users/siciit/AppData/LocalLow/DefaultCompany/Nvidia_softAnim_trials/labbehaviorTrial2.xml", FileMode.Open, FileAccess.Read);
-            //FileStream file = new FileStream(Application.persistentDataPath + "/labbehaviorTrial2.xml", FileMode.Create, FileAccess.Write);
+            ///*FileStream */file = File.Open("C:/Users/siciit/AppData/LocalLow/DefaultCompany/Nvidia_softAnim_trials/labbehaviorTrial2.xml", FileMode.Open, FileAccess.Read);
+            /*FileStream*/ file = File.Open(Application.persistentDataPath + "/labbehaviorTrial3.xml", FileMode.Open, FileAccess.Read);
             print(file.Name);
             container = readSerialize.Deserialize(file) as SerializableMap<string, SerializableMap<int, Vector3>>;
             foreach (var var in container)
@@ -143,6 +154,7 @@ using uFlex;
 
             //FindObjectOfType<GetBehaviors> ().localContainer = container;
             //FindObjectOfType<GetBehaviors>().gotXML = true;
+            file.Flush();
             file.Close();
             }
             //store list ofvectors that have changed positions;
@@ -185,39 +197,39 @@ using uFlex;
         //}
 
 
-        void OnGUI()
-        {
-            if (!btnTexture)
-            {
-                //Debug.LogError("Please assign a texture on the inspector");
-                return;
-            }
+        //void OnGUI()
+        //{
+        //    if (!btnTexture)
+        //    {
+        //        //Debug.LogError("Please assign a texture on the inspector");
+        //        return;
+        //    }
 
-            if (GUI.Button(new Rect(10, 10, 100, 30), "Move particle"))
-            {
-               // Debug.Log("Clicked the button with text");
-                turnOffAnim = true;
-            }
+        //    if (GUI.Button(new Rect(10, 10, 100, 30), "Move particle"))
+        //    {
+        //       // Debug.Log("Clicked the button with text");
+        //        turnOffAnim = true;
+        //    }
 
-            if (GUI.Button(new Rect(10, 70, 100, 30), "Done Moving"))
-            {
-                //Debug.Log("Clicked the button with text");
-                doneMoving = true;
-            }
+        //    if (GUI.Button(new Rect(10, 70, 100, 30), "Done Moving"))
+        //    {
+        //        //Debug.Log("Clicked the button with text");
+        //        doneMoving = true;
+        //    }
 
-            if (GUI.Button(new Rect(10, 150, 100, 30), "Set  behavior"))
-            {
-                //Debug.Log("Clicked the button with text");
-                turnOnAnim = true;
-            }
+        //    if (GUI.Button(new Rect(10, 150, 100, 30), "Set  behavior"))
+        //    {
+        //        //Debug.Log("Clicked the button with text");
+        //        turnOnAnim = true;
+        //    }
 
-            if (GUI.Button(new Rect(10, 250, 100, 30), "Show behaviors"))
-            {
-                //Debug.Log("Clicked the button with text");
-                showAnim = true;
-            }
+        //    if (GUI.Button(new Rect(10, 250, 100, 30), "Show behaviors"))
+        //    {
+        //        //Debug.Log("Clicked the button with text");
+        //        showAnim = true;
+        //    }
     }
 
-    }
+    
 
     

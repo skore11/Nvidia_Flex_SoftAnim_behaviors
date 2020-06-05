@@ -605,7 +605,7 @@ namespace uFlex
                 uniqueVertices[i] = vertices[uniqueVerticesIds[i]];
 
                 uniqueVerticesWithInvMass[i] = vertices[uniqueVerticesIds[i]];
-                uniqueVerticesWithInvMass[i].w = 1.0f / this.mass;
+                uniqueVerticesWithInvMass[i].w = 500f/*1.0f / this.mass*/;
 
                 min = FlexUtils.Min(min, uniqueVertices[i]);
                 max = FlexUtils.Max(max, uniqueVertices[i]);

@@ -94,8 +94,8 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaDirect: 0.5
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
-    m_ShowResolutionOverlay: 1
     m_ExportTrainingData: 0
+    m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -449,6 +449,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -541,6 +542,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -677,23 +679,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb3b8301b658ade44a56dd66f8837fc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resetTransform:
-    e00: 0
-    e01: 0
-    e02: 0
-    e03: 0
-    e10: 0
-    e11: 0
-    e12: 0
-    e13: 0
-    e20: 0
-    e21: 0
-    e22: 0
-    e23: 0
-    e30: 0
-    e31: 0
-    e32: 0
-    e33: 0
+  cam: {fileID: 0}
 --- !u!1 &686798160
 GameObject:
   m_ObjectHideFlags: 0
@@ -752,6 +738,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -808,6 +795,76 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 2579965268132837152, guid: 4bdbcdc7bdcc37747a88ea6f477536bf,
+        type: 3}
+      propertyPath: m_showDensity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2579965268132837153, guid: 4bdbcdc7bdcc37747a88ea6f477536bf,
+        type: 3}
+      propertyPath: skinnedMeshRenderer
+      value: 
+      objectReference: {fileID: 514199996}
+    - target: {fileID: 2579965268132837153, guid: 4bdbcdc7bdcc37747a88ea6f477536bf,
+        type: 3}
+      propertyPath: drawVertMapAsset
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2579965268132837158, guid: 4bdbcdc7bdcc37747a88ea6f477536bf,
+        type: 3}
+      propertyPath: m_lock
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2579965268132837160, guid: 4bdbcdc7bdcc37747a88ea6f477536bf,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 3.4999924
+      objectReference: {fileID: 0}
+    - target: {fileID: 2579965268132837160, guid: 4bdbcdc7bdcc37747a88ea6f477536bf,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 7.5967712
+      objectReference: {fileID: 0}
+    - target: {fileID: 2579965268132837160, guid: 4bdbcdc7bdcc37747a88ea6f477536bf,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 2.9946601
+      objectReference: {fileID: 0}
+    - target: {fileID: 2579965268132837160, guid: 4bdbcdc7bdcc37747a88ea6f477536bf,
+        type: 3}
+      propertyPath: m_Center.z
+      value: -0.38881597
+      objectReference: {fileID: 0}
+    - target: {fileID: 2579965268132837160, guid: 4bdbcdc7bdcc37747a88ea6f477536bf,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 2.5681384
+      objectReference: {fileID: 0}
+    - target: {fileID: 2579965268132837160, guid: 4bdbcdc7bdcc37747a88ea6f477536bf,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 2.8280907
+      objectReference: {fileID: 0}
+    - target: {fileID: 2579965268132837164, guid: 4bdbcdc7bdcc37747a88ea6f477536bf,
+        type: 3}
+      propertyPath: m_initialized
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2579965268132837164, guid: 4bdbcdc7bdcc37747a88ea6f477536bf,
+        type: 3}
+      propertyPath: m_drawDebug
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2579965268132837164, guid: 4bdbcdc7bdcc37747a88ea6f477536bf,
+        type: 3}
+      propertyPath: m_drawRest
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2579965268132837164, guid: 4bdbcdc7bdcc37747a88ea6f477536bf,
+        type: 3}
+      propertyPath: m_interactionType
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2579965268132837167, guid: 4bdbcdc7bdcc37747a88ea6f477536bf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -862,76 +919,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2579965268132837153, guid: 4bdbcdc7bdcc37747a88ea6f477536bf,
-        type: 3}
-      propertyPath: skinnedMeshRenderer
-      value: 
-      objectReference: {fileID: 514199996}
-    - target: {fileID: 2579965268132837153, guid: 4bdbcdc7bdcc37747a88ea6f477536bf,
-        type: 3}
-      propertyPath: drawVertMapAsset
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2579965268132837164, guid: 4bdbcdc7bdcc37747a88ea6f477536bf,
-        type: 3}
-      propertyPath: m_initialized
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2579965268132837164, guid: 4bdbcdc7bdcc37747a88ea6f477536bf,
-        type: 3}
-      propertyPath: m_drawDebug
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2579965268132837164, guid: 4bdbcdc7bdcc37747a88ea6f477536bf,
-        type: 3}
-      propertyPath: m_drawRest
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2579965268132837164, guid: 4bdbcdc7bdcc37747a88ea6f477536bf,
-        type: 3}
-      propertyPath: m_interactionType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2579965268132837152, guid: 4bdbcdc7bdcc37747a88ea6f477536bf,
-        type: 3}
-      propertyPath: m_showDensity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2579965268132837160, guid: 4bdbcdc7bdcc37747a88ea6f477536bf,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 3.4999924
-      objectReference: {fileID: 0}
-    - target: {fileID: 2579965268132837160, guid: 4bdbcdc7bdcc37747a88ea6f477536bf,
-        type: 3}
-      propertyPath: m_Center.y
-      value: 7.5967712
-      objectReference: {fileID: 0}
-    - target: {fileID: 2579965268132837160, guid: 4bdbcdc7bdcc37747a88ea6f477536bf,
-        type: 3}
-      propertyPath: m_Size.z
-      value: 2.9946601
-      objectReference: {fileID: 0}
-    - target: {fileID: 2579965268132837160, guid: 4bdbcdc7bdcc37747a88ea6f477536bf,
-        type: 3}
-      propertyPath: m_Center.z
-      value: -0.38881597
-      objectReference: {fileID: 0}
-    - target: {fileID: 2579965268132837160, guid: 4bdbcdc7bdcc37747a88ea6f477536bf,
-        type: 3}
-      propertyPath: m_Center.x
-      value: 2.5681384
-      objectReference: {fileID: 0}
-    - target: {fileID: 2579965268132837160, guid: 4bdbcdc7bdcc37747a88ea6f477536bf,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 2.8280907
-      objectReference: {fileID: 0}
-    - target: {fileID: 2579965268132837158, guid: 4bdbcdc7bdcc37747a88ea6f477536bf,
-        type: 3}
-      propertyPath: m_lock
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2579965266387458212, guid: 4bdbcdc7bdcc37747a88ea6f477536bf,
         type: 3}
@@ -1099,6 +1086,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -1251,16 +1239,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4723709837514632775, guid: ea2433a67e7a4ba42b8367deeb77530e,
-        type: 3}
-      propertyPath: m_drawDebug
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4723709837514632775, guid: ea2433a67e7a4ba42b8367deeb77530e,
-        type: 3}
-      propertyPath: m_drawRest
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4723709837514632770, guid: ea2433a67e7a4ba42b8367deeb77530e,
         type: 3}
       propertyPath: m_Enabled
@@ -1280,6 +1258,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4723709837514632775, guid: ea2433a67e7a4ba42b8367deeb77530e,
+        type: 3}
+      propertyPath: m_drawDebug
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4723709837514632775, guid: ea2433a67e7a4ba42b8367deeb77530e,
+        type: 3}
+      propertyPath: m_drawRest
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4723709837514632781, guid: ea2433a67e7a4ba42b8367deeb77530e,
         type: 3}

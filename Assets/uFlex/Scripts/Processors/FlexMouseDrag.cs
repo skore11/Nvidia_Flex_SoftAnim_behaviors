@@ -69,7 +69,7 @@ namespace uFlex
 
                 cntr.m_particles[m_mouseParticle].pos = p;
                 cntr.m_velocities[m_mouseParticle] = delta / Time.fixedTime;
-
+                //print("mouse particle vel: " + cntr.m_velocities[m_mouseParticle]);
                 //    Flex.SetParticles(m_solverPtr, m_cntr.m_particlesHndl.AddrOfPinnedObject(), m_cntr.m_particlesCount, Flex.Memory.eFlexMemoryHost);
                 //    Flex.SetVelocities(m_solverPtr, m_cntr.m_velocitiesHndl.AddrOfPinnedObject(), m_cntr.m_particlesCount, Flex.Memory.eFlexMemoryHost);
 

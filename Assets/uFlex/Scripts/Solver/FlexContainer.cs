@@ -329,7 +329,7 @@ namespace uFlex
 
         private void ProcessParticles(bool countChanged)
         {
-
+            //print("processing particles");
             for (int iId = 0; iId < m_flexGameObjects.Count && iId < m_activeInstacesCount; iId++)
             {
         
@@ -363,10 +363,12 @@ namespace uFlex
                     }   
                     else // do the full init
                     {
+                        print("mass" + particles.m_mass);
                         //if group is -1 set the consecutive bodyId, else use a user defined number
                         particles.m_collisionGroup = particles.m_collisionGroup == -1 ? iId : particles.m_collisionGroup;
                         int phase = Flex.MakePhase(particles.m_collisionGroup, (int)particles.m_interactionType);
                         float invMass = particles.m_mass == 0 ? 0.0f : 1.0f / particles.m_mass;
+                        //print("init" + particles.m_mass);
                         for (int pId = 0; pId < particles.m_particlesCount; pId++)
                         {
 
@@ -376,6 +378,7 @@ namespace uFlex
 
                             //m_velocities[pId + particles.m_particlesIndex] = particles.m_velocities[pId];
                             m_velocities[pId + particles.m_particlesIndex] = particles.m_initialVelocity;
+                            //print("velocities during process particles init of container: " + m_velocities[pId + particles.m_particlesIndex]);
                             m_colors[pId + particles.m_particlesIndex] = particles.m_colours[pId];
                             m_phases[pId + particles.m_particlesIndex] = phase;
                             m_particlesActivity[pId + particles.m_particlesIndex] = particles.m_particlesActivity[pId];

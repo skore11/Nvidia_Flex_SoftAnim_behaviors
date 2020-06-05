@@ -380,6 +380,7 @@ GameObject:
   - component: {fileID: 7860715050118819556}
   - component: {fileID: 7860715050118819555}
   - component: {fileID: 7860715050118819554}
+  - component: {fileID: 4895222969694376583}
   - component: {fileID: 7860715050118819553}
   - component: {fileID: 7860715050118819558}
   - component: {fileID: 7860715050118819552}
@@ -31438,6 +31439,7 @@ SkinnedMeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -31545,8 +31547,10 @@ MonoBehaviour:
   rebuildVertMapAsset: 1
   vertMapAsset: {fileID: 11400000, guid: 016cb337e2574cc4996119a2b96e49f9, type: 2}
   skinnedMeshRenderer: {fileID: 0}
+  particlePositions: []
   drawVertMapAsset: 1
   shapeMatchingGO: {fileID: 7860715050118819344}
+  flexParticles: {fileID: 0}
 --- !u!114 &7860715050118819559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31603,6 +31607,26 @@ MonoBehaviour:
   m_lock: 1
   m_lockedParticlesIds: 
   m_lockedParticlesMasses: []
+  m_Particles: {fileID: 0}
+  moveCol: 0
+--- !u!114 &4895222969694376583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7860715050118819344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3821c09fb7a4b54458959257705d1a19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_lock: 0
+  m_lockedParticlesIds: 
+  m_lockedParticlesMasses: []
+  m_Particles: {fileID: 0}
+  moveCol: 0
+  movCol: 0
 --- !u!114 &7860715050118819553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31635,6 +31659,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_mouseParticle: -1
   m_mousePos: {x: 0, y: 0, z: 0}
+  picked: 0
+  pMouseParticleID: 0
+  pMouseParticlePos: {x: 0, y: 0, z: 0}
 --- !u!114 &7860715050118819552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31660,8 +31687,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9568a36a4bf158649805c6ff99033d78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  btnTexture: {fileID: 10906, guid: 0000000000000000f000000000000000, type: 0}
   behaviorName: {fileID: 0}
+  getBehaviors: {fileID: 0}
+  flyCam: {fileID: 0}
+  flyCamEnable: 0
 --- !u!114 &7860715050118819566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31676,8 +31705,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flexSolver: {fileID: 0}
   flexParams: {fileID: 0}
+  flexCont: {fileID: 0}
+  pInd: 
+  pVect: []
   solverSubSteps: 1
   numOfIterations: 1
+  assignDeform: 0
+  resetDeform: 0
 --- !u!114 &7860715050118819565
 MonoBehaviour:
   m_ObjectHideFlags: 0

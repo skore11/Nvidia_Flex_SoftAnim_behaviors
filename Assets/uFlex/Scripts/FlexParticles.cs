@@ -122,6 +122,7 @@ namespace uFlex
                 for (int i = 0; i < m_particlesCount; i++)
                 {
                     //Gizmos.color = m_colours[i];
+                    //Need to connect this to flex animation
                     Gizmos.color = m_particlesActivity[i] ? Color.green : Color.red;
                     if (!Application.isPlaying)
                         Gizmos.DrawSphere(transform.TransformPoint(m_particles[i].pos), 0.5f);

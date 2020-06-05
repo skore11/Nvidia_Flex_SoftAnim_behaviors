@@ -34,7 +34,7 @@ namespace uFlex
         [HideInInspector]
         public int[] m_shapeOffsets;             //!< Each entry stores the end of the shape's indices in the indices array (exclusive prefix sum of shape lengths)
 
-        [HideInInspector]
+        //[HideInInspector]
         public float[] m_shapeCoefficients;      //!< The stiffness coefficient for each shape
 
         [HideInInspector]

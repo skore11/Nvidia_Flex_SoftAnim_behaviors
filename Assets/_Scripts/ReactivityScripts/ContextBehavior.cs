@@ -16,29 +16,32 @@ namespace uFlex
         public FlexParameters flexParams;
         public FlexContainer flexCont;
 
-        private int pInd;
-        private Vector3 pVect;
+        [HideInInspector]
+        public List<int> pInd;
+        [HideInInspector]
+        public List<Vector3> pVect;
 
         public float solverSubSteps = 1.0f;
         public float numOfIterations = 1.0f;
 
-        Dropdown m_Dropdown;
+        //Dropdown m_Dropdown;
+        [HideInInspector]
+        public bool assignDeform;
 
-        UnityEvent m_Deform = new UnityEvent();
-
-        bool assignDeform;
+        [HideInInspector]
+        public bool resetDeform;
 
         [HideInInspector]
         public SerializableMap<string, SerializableMap<int, Vector3>> localBehavior;
 
-        void Start()
-        {
-            m_Dropdown = FindObjectOfType<Dropdown>().GetComponent<Dropdown>();
-            m_Dropdown.onValueChanged.AddListener(delegate { DeformCharacter(m_Dropdown); });
-            //m_Deform.AddListener(delegate { deformParticle(flexCont, pInd, pVect); });
-            //m_Dropdown.onValueChanged.AddListener(delegate { assignDeform = true; PostContainerUpdate(flexSolver, flexCont, flexParams); });
+        //void Start()
+        //{
+        //    m_Dropdown = FindObjectOfType<Dropdown>().GetComponent<Dropdown>();
+        //    m_Dropdown.onValueChanged.AddListener(delegate { DeformCharacter(m_Dropdown); });
+        //    //m_Deform.AddListener(delegate { deformParticle(flexCont, pInd, pVect); });
+        //    //m_Dropdown.onValueChanged.AddListener(delegate { assignDeform = true; PostContainerUpdate(flexSolver, flexCont, flexParams); });
 
-        }
+        //}
 
         // Start is called before the first frame update
         public override void PostContainerUpdate(FlexSolver solver, FlexContainer cntr, FlexParameters parameters)
@@ -46,8 +49,8 @@ namespace uFlex
             //flexSolver.m_solverSubSteps = (int) solverSubSteps;
             //flexParams.m_numIterations = (int) numOfIterations;
 
-            solver.m_solverSubSteps = (int)solverSubSteps;
-            parameters.m_numIterations = (int)numOfIterations/2;
+            //solver.m_solverSubSteps = (int)solverSubSteps;
+            //parameters.m_numIterations = (int)numOfIterations;
 
             //In Child objects
             //if OntriggerEnter(Coll)
@@ -57,27 +60,44 @@ namespace uFlex
             {
                 //print(pInd);
                 //print(pVect);
-                deformParticle(flexCont, pInd, pVect);
+                print("Assign Deform");
+                deformParticle(/*flexCont*/cntr, pInd, pVect);
                 assignDeform = false;
             }
-            
+
+            if (resetDeform)
+            {
+                resetParticle(cntr, pInd);
+                resetDeform = false;
+            }
         }
 
-        void DeformCharacter(Dropdown change)
+        public void DeformCharacter(Dropdown change)
         {
+            if (change.options[change.value].text == "Reset")
+            {
+                //do something
+                print("Reset");
+                resetDeform = true;
+            }
             //print(change.options[change.value].text);
             //TODO: probably need a new class to apply the deformations to the character using the dictionary particles
             //for now just creating a function that does that
-            foreach (var i in localBehavior[change.options[change.value].text])
+            else
             {
-                //print(i.Key);
-                //print(i.Value);
-                pInd = i.Key;
-                pVect = i.Value;
-                assignDeform = true;  
+                int iter = 0;
+                foreach (var i in localBehavior[change.options[change.value].text])
+                {
+                    //print(i.Key);
+                    //print(i.Value);
+                    pInd.Add(i.Key);
+                    pVect.Add(i.Value);
+                    iter += 1;
+                }
+                assignDeform = true;
             }
-            
 
+            
         }
 
         void OnTriggerEnter(Collider other)
@@ -107,22 +127,38 @@ namespace uFlex
             }
         }
 
-            void OnGUI()
+        //    void OnGUI()
+        //{
+        //    GUIStyle myStyle = new GUIStyle();
+        //    myStyle.normal.textColor = Color.black;
+        //    GUI.Label(new Rect(150, 10, 120, 50), "Flex Solver Sub Steps", myStyle);
+        //    solverSubSteps = GUI.HorizontalSlider(new Rect(100, 50, 120, 50), solverSubSteps, 1.0F, 5.0F);
+        //    GUI.Label(new Rect(150, 60, 120, 50), "Flex Parameters: Number of iterations",myStyle);
+        //    numOfIterations = GUI.HorizontalSlider(new Rect(100, 100, 120, 50), numOfIterations, 1.0F, 20.0F);
+        //}
+
+        void resetParticle(FlexContainer cntr, List<int> pIndex)
         {
-            GUIStyle myStyle = new GUIStyle();
-            myStyle.normal.textColor = Color.black;
-            GUI.Label(new Rect(150, 10, 120, 50), "Flex Solver Sub Steps", myStyle);
-            solverSubSteps = GUI.HorizontalSlider(new Rect(100, 50, 120, 50), solverSubSteps, 1.0F, 5.0F);
-            GUI.Label(new Rect(150, 60, 120, 50), "Flex Parameters: Number of iterations",myStyle);
-            numOfIterations = GUI.HorizontalSlider(new Rect(100, 100, 120, 50), numOfIterations, 1.0F, 20.0F);
+            if (pIndex.Count != 0)
+            {
+                foreach (var index in pInd)
+                {
+                    //print(index);
+                    cntr.m_particles[index].invMass = 1.0f;
+                }
+
+            }
         }
 
-        void deformParticle(FlexContainer cntr, int pIndex, Vector3 pPos)
+        void deformParticle(FlexContainer cntr, List<int> pIndex, List<Vector3> pPos)
         {
-            cntr.m_particles[pIndex].invMass = 0.0f;
-            cntr.m_particles[pIndex].pos = pPos;
+            for(int i = 0; i  < pIndex.Count; i++)
+            {               
+                cntr.m_particles[pIndex[i]].invMass = 0.0f;
+                cntr.m_particles[pIndex[i]].pos = pPos[i];
+            }
             
-            print("works kinda");
+            print("works");
         }
     }
 }

@@ -19,16 +19,20 @@ namespace uFlex
         {
             for (int i = 0; i < cntr.m_particlesCount; i++)
             {
-                Collider collider = GetComponent<Collider>();
+                Collider[] collider = GetComponents<Collider>();
                 Collider[] colliders = Physics.OverlapSphere(cntr.m_particles[i].pos, 1.0f);
                 foreach (Collider c in colliders)
                 {
-                    if (c == collider)
+                    foreach (Collider col in collider)
                     {
-                        m_lockedParticlesIds.Add(i);
-                        m_lockedParticlesMasses.Add(cntr.m_particles[i].invMass);
-                        cntr.m_particles[i].invMass =0.0f;
+                        if (c == col)
+                        {
+                            m_lockedParticlesIds.Add(i);
+                            m_lockedParticlesMasses.Add(cntr.m_particles[i].invMass);
+                            cntr.m_particles[i].invMass = 0.0f;
+                        }
                     }
+                   
                 }
             }
         }
@@ -36,12 +40,14 @@ namespace uFlex
 
         public override void PostContainerUpdate(FlexSolver solver, FlexContainer cntr, FlexParameters parameters)
         {
+            //print("number of locked particles: " + m_lockedParticlesIds.Count);
             for (int i = 0; i < m_lockedParticlesIds.Count; i++)
             {
                 if (m_lock)
                     cntr.m_particles[m_lockedParticlesIds[i]].invMass = 0.0f;
                 else
                     cntr.m_particles[m_lockedParticlesIds[i]].invMass = m_lockedParticlesMasses[i];
+                //cntr.m_particles[m_lockedParticlesIds[i]].invMass = 1.0f;
             }
         }
 
