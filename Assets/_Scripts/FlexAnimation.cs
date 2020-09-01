@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using uFlex;
-
+//using NVIDIA.Flex;
 #if UNITY_EDITOR
 using UnityEditor; // required to build assets
 #endif

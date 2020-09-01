@@ -12,7 +12,7 @@ namespace uFlex
         [HideInInspector]
         public Matrix4x4[] m_bindPoses;
 
-        [HideInInspector]
+        //[HideInInspector]
         public Transform[] m_bones;
 
         private FlexShapeMatching m_shapes;
@@ -33,6 +33,7 @@ namespace uFlex
             {
                 m_bones[i].localPosition = transform.InverseTransformPoint(m_shapes.m_shapeTranslations[i]);
                 m_bones[i].localRotation = Quaternion.Inverse(transform.rotation) * m_shapes.m_shapeRotations[i];
+                //m_shapes.m_shapeCoefficients[i] = 1.0f;
             }
 
 

@@ -72,3 +72,29 @@ public class StringIntVector3DictionaryDrawer : SerializableDictionaryDrawer<str
     }
 }
 internal class SerializableStringIntVector3Template : SerializableKeyValueTemplate<string, IntVector3Dictionary> { }
+
+// ---------------
+//  Transform => (Int => Vector3)
+// ---------------
+[UnityEditor.CustomPropertyDrawer(typeof(TransformIntVector3Dictionary))]
+public class TransformIntVector3DictionaryDrawer : SerializableDictionaryDrawer<Transform, IntVector3Dictionary>
+{
+    protected override SerializableKeyValueTemplate<Transform, IntVector3Dictionary> GetTemplate()
+    {
+        return GetGenericTemplate<SerializableTransformIntVector3Template>();
+    }
+}
+internal class SerializableTransformIntVector3Template : SerializableKeyValueTemplate<Transform, IntVector3Dictionary> { }
+
+// ---------------
+//  String => (String => (Int => Vector3))
+// ---------------
+[UnityEditor.CustomPropertyDrawer(typeof(StringStringIntVector3Dictionary))]
+public class StringStringIntVector3DictionaryDrawer : SerializableDictionaryDrawer<string, StringIntVector3Dictionary>
+{
+    protected override SerializableKeyValueTemplate<string, StringIntVector3Dictionary> GetTemplate()
+    {
+        return GetGenericTemplate<SerializableStringStringIntVector3Template>();
+    }
+}
+internal class SerializableStringStringIntVector3Template : SerializableKeyValueTemplate<string, StringIntVector3Dictionary> { }

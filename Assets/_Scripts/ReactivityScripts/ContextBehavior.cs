@@ -24,6 +24,8 @@ namespace uFlex
         public float solverSubSteps = 1.0f;
         public float numOfIterations = 1.0f;
 
+        public Camera rayCam;
+
         //Dropdown m_Dropdown;
         [HideInInspector]
         public bool assignDeform;
@@ -33,6 +35,9 @@ namespace uFlex
 
         [HideInInspector]
         public SerializableMap<string, SerializableMap<int, Vector3>> localBehavior;
+
+        [HideInInspector]
+        public SerializableDictionary<Transform, SerializableMap<string, SerializableMap<int, Vector3>>> stimuli;
 
         //void Start()
         //{
@@ -46,8 +51,8 @@ namespace uFlex
         // Start is called before the first frame update
         public override void PostContainerUpdate(FlexSolver solver, FlexContainer cntr, FlexParameters parameters)
         {
-            //flexSolver.m_solverSubSteps = (int) solverSubSteps;
-            //flexParams.m_numIterations = (int) numOfIterations;
+            flexSolver.m_solverSubSteps = (int) solverSubSteps;
+            flexParams.m_numIterations = (int) numOfIterations;
 
             //solver.m_solverSubSteps = (int)solverSubSteps;
             //parameters.m_numIterations = (int)numOfIterations;
@@ -69,6 +74,24 @@ namespace uFlex
             {
                 resetParticle(cntr, pInd);
                 resetDeform = false;
+            }
+        }
+
+        public void Update()
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+
+                RaycastHit hitObject = new RaycastHit();
+                bool hit = Physics.Raycast(rayCam.ScreenPointToRay(Input.mousePosition), out hitObject);
+                if (hit)
+                {
+                    print("Object selected:" + hitObject.transform.name + " trasform of object: " + hitObject.transform);
+                    if (localBehavior != null)
+                    {
+                        stimuli.dictionary.Add(hitObject.transform, localBehavior); 
+                    }
+                }
             }
         }
 

@@ -38,3 +38,15 @@ public class IntVector3Dictionary : SerializableDictionary<int, Vector3> { }
 // ---------------
 [Serializable]
 public class StringIntVector3Dictionary : SerializableDictionary<string, IntVector3Dictionary> { }
+
+// ---------------
+//  Transform => (Int => Vector3)
+// ---------------
+[Serializable]
+public class TransformIntVector3Dictionary : SerializableDictionary<Transform, IntVector3Dictionary> { }
+
+// ---------------
+//  String => (String => (Int => Vector3))
+// ---------------
+[Serializable]
+public class StringStringIntVector3Dictionary : SerializableDictionary<string, StringIntVector3Dictionary> { }

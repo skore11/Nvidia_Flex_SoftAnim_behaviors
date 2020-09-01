@@ -89,7 +89,7 @@ public class MatchAnim: FlexProcessor
             }
         }
 
-        print("Avg. velocity of animPaticles: " + (velAccumAnim + velFirst).magnitude / flAnim.particlePositions.Length);
+        //print("Avg. velocity of animPaticles: " + (velAccumAnim + velFirst).magnitude / flAnim.particlePositions.Length);
 
         for (int i = 0; i < flParticles.m_velocities.Length; i++)
         {
@@ -99,7 +99,7 @@ public class MatchAnim: FlexProcessor
             velAccumFlex += flParticles.m_velocities[i];
         }
 
-        print("Avg. velocity of flexPaticles: " + velAccumFlex.magnitude / flParticles.m_velocities.Length);
+        //print("Avg. velocity of flexPaticles: " + velAccumFlex.magnitude / flParticles.m_velocities.Length);
     }
 
     Vector3 calcInitVel(List<Vector3> restPositons)
