@@ -3,15 +3,16 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3f2b44126ff4eb34e941cfec7bfae3a0, type: 3}
   m_Name: FlexContainer
   m_EditorClassIdentifier: 
-  m_simpleMode: 1
+  m_simpleMode: 0
   m_simpleMaxParticles: 10000
   m_simpleSubstepCount: 2
   m_simpleIterationCount: 5

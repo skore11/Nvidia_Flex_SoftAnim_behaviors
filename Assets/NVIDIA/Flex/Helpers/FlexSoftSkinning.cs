@@ -27,6 +27,7 @@
 
 using System.Collections.Generic;
 using UnityEngine;
+//using System.Runtime.InteropServices;
 
 namespace NVIDIA.Flex
 {
@@ -204,11 +205,17 @@ namespace NVIDIA.Flex
         {
             if (m_actor && m_actor.handle && m_skinningBones.Length > 0)
             {
+                //_particleData.GetParticles(start, m_actor.indexCount, m_particles);
+                //print(m_particles.Length);
                 FlexExt.Instance instance = m_actor.handle.instance;
                 int boneCount = m_skinningBones.Length;
                 Vector3 bonePosition = Vector3.zero;
                 Quaternion boneRotation = Quaternion.identity;
-
+                //print(instance.numParticles);
+                //below is same as numParticles
+                //print(m_actor.indexCount);
+                //string test = Marshal.PtrToStringAnsi(_particleData.particleData.particles);
+                //print(test);
                 for (int i = 0; i < boneCount; ++i)
                 {
                     FlexUtils.FastCopy(instance.shapeTranslations, sizeof(float) * 3 * i, ref bonePosition, 0, sizeof(float) * 3);
@@ -223,6 +230,8 @@ namespace NVIDIA.Flex
         SkinnedMeshRenderer m_renderer;
         Mesh m_meshInstance;
         Transform[] m_skinningBones = new Transform[0];
+        Vector4[] m_particles;
+        int start = 0;
 
         [SerializeField, Tooltip("The speed at which the bone's influence on a vertex falls off with distance")]
         float m_skinningFalloff = 1.0f;
