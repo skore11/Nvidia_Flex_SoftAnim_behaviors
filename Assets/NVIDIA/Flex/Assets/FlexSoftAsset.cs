@@ -167,12 +167,14 @@ namespace NVIDIA.Flex
                             if (fixedParticles.Length == 0)
                             {
                                 float minDist2 = float.MaxValue;
+                                Vector3 center = m_boundaryMesh.bounds.center;
+                                //Debug.Log(" center of asset bounds: " + center);
                                 for (int i = 0; i < shapeCenters.Length; ++i)
                                 {
-                                    float dist2 = shapeCenters[i].sqrMagnitude;
+                                    float dist2 = (shapeCenters[i] - center).sqrMagnitude;
                                     if (dist2 < minDist2)
                                     {
-                                        dist2 = minDist2;
+                                        minDist2 = dist2;
                                         m_referenceShape = i;
                                     }
                                 }
