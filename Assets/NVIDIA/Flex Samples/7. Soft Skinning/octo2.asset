@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f4f6c478d4a1e845b3319d5e737f6c8, type: 3}
-  m_Name: New FlexSoftAsset
+  m_Name: octo2
   m_EditorClassIdentifier: 
   m_particles: []
   m_maxParticles: 1000

@@ -80,30 +80,63 @@ namespace NVIDIA.Flex
     //}
 
 
-    [ExecuteInEditMode]
+    //[ExecuteInEditMode]
     public class FlexAnimSoftSkin : MonoBehaviour
     {
         FlexSoftActor m_actor;
+        BoxCollider locked_box;
         //FlexContainer m_container;
         private Vector4[] m_particles;
-        private int indices;
+        //private int indices;
         int start = 0;
-        //private void Start()
-        //{
-        //    m_actor = GetComponent<FlexSoftActor>();
-        //}
+        public int frameInterval = 30;
+        private int framesToNextPrint = 0;
+
+        private void Awake()
+        {
+            m_actor = GetComponent<FlexSoftActor>();
+            locked_box = GetComponent<BoxCollider>();
+        }
+
+        private void Start()
+        {
+            m_actor.onFlexUpdate += OnFlexUpdate;
+            m_particles = new Vector4[m_actor.indexCount];
+            Debug.Log("Created array of size: " + m_actor.indexCount);
+            Debug.Log("All indices: " + m_actor.indices[0] + " to " + m_actor.indices[m_actor.indexCount - 1]);
+            Debug.Log(" mass Scale: " + m_actor.massScale);
+            Debug.Log(" particle Group: " + m_actor.particleGroup);
+            Debug.Log(" reference Shape: " + m_actor.asset.referenceShape);
+            Debug.Log(" shapeindices length: " + m_actor.asset.shapeCenters.Length);
+            if (locked_box != null)
+            {
+                // find all particles that are inside the box, and add it to the fixedParticles list:
+
+
+                locked_box = null;
+            }
+        }
 
         #region
 
         void OnFlexUpdate(FlexContainer.ParticleData _particleData)
         {
-            //_particleData.GetParticles(start, m_actor.indexCount, m_particles);
-            //FlexExt.GetActiveList(, ref indices);
-            string test = Marshal.PtrToStringAnsi(_particleData.particleData.particles);
-            //FlexExt.Instance instance= m_actor.handle.instance;
-            //instance.
-            //base.OnFlexUpdate(_particleData);
-            Debug.Log(test);
+            if (this.framesToNextPrint > 0)
+            {
+                this.framesToNextPrint -= 1;
+                return;
+            }
+            this.framesToNextPrint = this.frameInterval;
+            
+            _particleData.GetParticles(m_actor.indices[0], m_actor.indexCount, m_particles);
+            Vector4 testVector = _particleData.GetParticle(m_actor.indices[0]);
+
+            m_actor.ApplyImpulse(new Vector3(0, 1000, 0));
+            
+            Debug.Log(" OnFlexUpdate in our claSS!!!!!! got particle: " + testVector);
+            //Debug.Log(" Indices: " + m_actor.indices[0] + "  " + m_actor.indices[20]);
+            //Debug.Log(" OnFlexUpdate in our claSS!!!!!! got particle: " + m_particles[0] + m_particles[1]
+            //    + m_particles[m_actor.indexCount / 2] + m_particles[m_actor.indexCount / 4]);
         }
         #endregion
     }

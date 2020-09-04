@@ -2580,5 +2580,5 @@ MonoBehaviour:
   m_clusterRadius: 0.5
   m_clusterStiffness: 0.2
   m_linkRadius: 0
-  m_linkStiffness: 1
-  m_referenceShape: 65
+  m_linkStiffness: 0.9
+  m_referenceShape: 33
