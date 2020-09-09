@@ -294,6 +294,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!137 &537973889 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 13700004, guid: ebc416dbabb1c624a8b1d31d51e87c52,
+    type: 3}
+  m_PrefabInstance: {fileID: 1359398362}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &771700110
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,11 +311,11 @@ GameObject:
   - component: {fileID: 771700115}
   - component: {fileID: 771700114}
   - component: {fileID: 771700113}
-  - component: {fileID: 771700112}
   - component: {fileID: 771700111}
   - component: {fileID: 771700116}
   - component: {fileID: 771700117}
   - component: {fileID: 771700118}
+  - component: {fileID: 771700112}
   m_Layer: 0
   m_Name: SoftActorTest
   m_TagString: Untagged
@@ -380,6 +386,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   frameInterval: 30
+  Skin: {fileID: 537973889}
 --- !u!114 &771700113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53992,7 +53999,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: ebc416dbabb1c624a8b1d31d51e87c52, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -8.97
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: ebc416dbabb1c624a8b1d31d51e87c52, type: 3}
       propertyPath: m_LocalPosition.y

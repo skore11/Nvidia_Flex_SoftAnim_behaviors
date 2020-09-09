@@ -192,17 +192,18 @@ namespace NVIDIA.Flex
                     nodeWeights[bw.boneIndex3].weights.Add(new VertexWeight(uniqueIndex, localPt, bw.weight3));
                 }
             }
+            particleNodeWeights = nodeWeights;
         }
 
         private void Start()
         {
-            Mesh mesh = Skin.sharedMesh;
-            Vector3[] cachedVertices = mesh.vertices;
-            List<Vector3> tempCache = new List<Vector3>();
-            for (int i = 0; i < cachedVertices.Length; i++)
-            {
-                tempCache.Add(cachedVertices[i]);
-            }
+            //Mesh mesh = Skin.sharedMesh;
+            //Vector3[] cachedVertices = mesh.vertices;
+            //List<Vector3> tempCache = new List<Vector3>();
+            //for (int i = 0; i < cachedVertices.Length; i++)
+            //{
+            //    tempCache.Add(cachedVertices[i]);
+            //}
             m_actor.onFlexUpdate += OnFlexUpdate;
             m_particles = new Vector4[m_actor.indexCount];
             Debug.Log("Created array of size: " + m_actor.indexCount);
@@ -366,7 +367,7 @@ namespace NVIDIA.Flex
             }
             for (int i = 0; i < shapeAnimVectors.Length; i++)
             {
-                m_actor.ApplyImpulse(shapeAnimVectors[i], i);
+                m_actor.ApplyImpulse(shapeAnimVectors[i]*5000, i);
             }
         }
 
