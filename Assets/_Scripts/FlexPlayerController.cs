@@ -11,7 +11,7 @@ namespace uFlex
 
         public float speed;
 
-        public GameObject fGB;
+        //public GameObject fGB;
 
        
 
