@@ -229,6 +229,7 @@ namespace NVIDIA.Flex
 
         void OnFlexUpdate(FlexContainer.ParticleData _particleData)
         {
+            //Debug.Log("test");
             //if (this.framesToNextPrint > 0)
             //{
             //    this.framesToNextPrint -= 1;
@@ -238,6 +239,7 @@ namespace NVIDIA.Flex
 
             if (map)
             {
+                Debug.Log("test");
                 _particleData.GetParticles(m_actor.indices[0], m_actor.indexCount, m_particles);
                 Mesh mesh = Skin.sharedMesh;
                 Vector3[] cachedVertices = mesh.vertices;
@@ -275,31 +277,31 @@ namespace NVIDIA.Flex
             //_particleData.GetParticles(m_actor.indices[0], m_actor.indexCount, m_particles);
             //Vector4 testVector = _particleData.GetParticle(m_actor.indices[0]);
 
-            if (firstRun)
-            {
-                firstRun = false;
+            //if (firstRun)
+            //{
+            //    firstRun = false;
 
-                _cachedVertices = Skin.sharedMesh.vertices;
-                _cachedBindposes = Skin.sharedMesh.bindposes;
-                _cachedBoneWeights = Skin.sharedMesh.boneWeights;
+            //    _cachedVertices = Skin.sharedMesh.vertices;
+            //    _cachedBindposes = Skin.sharedMesh.bindposes;
+            //    _cachedBoneWeights = Skin.sharedMesh.boneWeights;
 
-                List<Vector3> tempCache = new List<Vector3>();
-                for (int i = 0; i < _cachedVertices.Length; i++)
-                {
-                    tempCache.Add(_cachedVertices[i]);
-                }
-                SetBoneWeights(tempCache, unique_Index);
-                particlePositions = particleRestPositions;
+            //    List<Vector3> tempCache = new List<Vector3>();
+            //    for (int i = 0; i < _cachedVertices.Length; i++)
+            //    {
+            //        tempCache.Add(_cachedVertices[i]);
+            //    }
+            //    SetBoneWeights(tempCache, unique_Index);
+            //    particlePositions = particleRestPositions;
 
 
+            //    UpdateParticlePositions();
+            //}
+            //else
+            //{
+            //    if (timeDelta < refreshRate)
+            //        return;
                 UpdateParticlePositions();
-            }
-            else
-            {
-                if (timeDelta < refreshRate)
-                    return;
-                UpdateParticlePositions();
-            }
+            //}
 
             //Debug.Log(" OnFlexUpdate in our claSS!!!!!! got particle: " + testVector);
             //Debug.Log(" fixed particles: " + m_actor.asset.fixedParticles.Length);
@@ -365,6 +367,7 @@ namespace NVIDIA.Flex
                 ppIndex++;
 
             }
+            //print(shapeAnimVectors.Length);
             for (int i = 0; i < shapeAnimVectors.Length; i++)
             {
                 m_actor.ApplyImpulse(shapeAnimVectors[i]*5000, i);
