@@ -85,6 +85,8 @@ namespace NVIDIA.Flex
 
         private WeightList[] particleNodeWeights; // one per node (vert). Weights of standard mesh
 
+        private Vector3[] shapeAnimVectors; // used when updating particle positions
+
         Vector3[] _cachedVertices;
         Matrix4x4[] _cachedBindposes;
         BoneWeight[] _cachedBoneWeights;
@@ -206,6 +208,7 @@ namespace NVIDIA.Flex
             //}
             m_actor.onFlexUpdate += OnFlexUpdate;
             m_particles = new Vector4[m_actor.indexCount];
+            shapeAnimVectors = new Vector3[m_particles.Length];
             Debug.Log("Created array of size: " + m_actor.indexCount);
             Debug.Log("All indices: " + m_actor.indices[0] + " to " + m_actor.indices[m_actor.indexCount - 1]);
             Debug.Log(" mass Scale: " + m_actor.massScale);
@@ -300,7 +303,7 @@ namespace NVIDIA.Flex
             //{
             //    if (timeDelta < refreshRate)
             //        return;
-                UpdateParticlePositions();
+                UpdateParticlePositions(FlexContainer.ParticleData _particleData);
             //}
 
             //Debug.Log(" OnFlexUpdate in our claSS!!!!!! got particle: " + testVector);
@@ -312,7 +315,7 @@ namespace NVIDIA.Flex
         }
         #endregion
 
-        public void UpdateParticlePositions()
+        public void UpdateParticlePositions(FlexContainer.ParticleData _particleData)
         {
             //set all particle postions to zero Vector first
             for (int i = 0; i < particlePositions.Count; i++)
@@ -344,21 +347,22 @@ namespace NVIDIA.Flex
             //print(particlePositions.Count);
             // Now convert each point into local coordinates of this object.
             //List<Vector3> nextPos = new List<Vector3>(particlePositions.Count);
-            Vector3[] shapeAnimVectors = new Vector3[m_particles.Length];
+            
 
             //for (int i = 0; i < particlePositions.Count; i++)
             //{
             int ppIndex = 0;
+            Vector3 particlePos = new Vector3();
+            Vector3 temp;
             //int bigCount = 0;
             for (int i = 0; i < m_particles.Length; i++)
             {
 
                 int primIndex = i;
-                Vector3 particlePos = new Vector3();
                 particlePos.x = m_particles[i].x;
                 particlePos.y = m_particles[i].y;
                 particlePos.z = m_particles[i].z;
-                Vector3 temp = particlePositions[ppIndex] - particlePos;
+                temp = particlePositions[ppIndex] - particlePos;
 
                 shapeAnimVectors[primIndex].x = temp.x;// * Time.fixedDeltaTime;
                 shapeAnimVectors[primIndex].y = temp.y;// * Time.fixedDeltaTime;
@@ -370,6 +374,16 @@ namespace NVIDIA.Flex
             //print(shapeAnimVectors.Length);
             for (int i = 0; i < shapeAnimVectors.Length; i++)
             {
+                // looks like the main slowdown is that this function here eventually
+                // triggers FlexActor.ApplyImpulses and that then uses
+                // FlexContainer.SetVelocity internally, so setting one velocity at a time,
+                // plus some code to avoid applying tiny impulses or impulses to tiny masses.
+                // But we are effectively applying impulses to everything all the time.
+                // So we should probably use
+                //_particleData.GetVelocities
+                // and
+                //_particleData.SetVelocities
+                // directly
                 m_actor.ApplyImpulse(shapeAnimVectors[i]*5000, i);
             }
         }
