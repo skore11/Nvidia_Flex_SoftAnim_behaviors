@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using NVIDIA.Flex;
 
-namespace NVIDIA.Flex
+namespace Percubed.Flex
 {
     /**
      * Lock particles in the flex object based on a BoxCollider.

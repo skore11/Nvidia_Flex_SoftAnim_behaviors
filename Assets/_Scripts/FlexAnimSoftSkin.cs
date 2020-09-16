@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Runtime.InteropServices;
+using NVIDIA.Flex;
 
-namespace NVIDIA.Flex
+namespace Percubed.Flex
 {
     [System.Serializable]
     public class VertexWeight
