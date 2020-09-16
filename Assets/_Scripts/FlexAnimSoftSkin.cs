@@ -68,6 +68,7 @@ namespace NVIDIA.Flex
         BoxCollider locked_box;
         //FlexContainer m_container;
         private Vector4[] m_particles;
+        private Vector3[] m_velocities;
         //private int indices;
         int start = 0;
         public int frameInterval = 30;
@@ -208,6 +209,7 @@ namespace NVIDIA.Flex
             //}
             m_actor.onFlexUpdate += OnFlexUpdate;
             m_particles = new Vector4[m_actor.indexCount];
+            m_velocities = new Vector3[m_particles.Length];
             shapeAnimVectors = new Vector3[m_particles.Length];
             Debug.Log("Created array of size: " + m_actor.indexCount);
             Debug.Log("All indices: " + m_actor.indices[0] + " to " + m_actor.indices[m_actor.indexCount - 1]);
@@ -303,7 +305,7 @@ namespace NVIDIA.Flex
             //{
             //    if (timeDelta < refreshRate)
             //        return;
-                UpdateParticlePositions(FlexContainer.ParticleData _particleData);
+                UpdateParticlePositions(_particleData);
             //}
 
             //Debug.Log(" OnFlexUpdate in our claSS!!!!!! got particle: " + testVector);
@@ -353,7 +355,7 @@ namespace NVIDIA.Flex
             //{
             int ppIndex = 0;
             Vector3 particlePos = new Vector3();
-            Vector3 temp;
+            Vector3 _tempVector3;
             //int bigCount = 0;
             for (int i = 0; i < m_particles.Length; i++)
             {
@@ -362,15 +364,17 @@ namespace NVIDIA.Flex
                 particlePos.x = m_particles[i].x;
                 particlePos.y = m_particles[i].y;
                 particlePos.z = m_particles[i].z;
-                temp = particlePositions[ppIndex] - particlePos;
+                _tempVector3 = particlePositions[ppIndex] - particlePos;
 
-                shapeAnimVectors[primIndex].x = temp.x;// * Time.fixedDeltaTime;
-                shapeAnimVectors[primIndex].y = temp.y;// * Time.fixedDeltaTime;
-                shapeAnimVectors[primIndex].z = temp.z;// * Time.fixedDeltaTime;
+                shapeAnimVectors[primIndex].x = _tempVector3.x;// * Time.fixedDeltaTime;
+                shapeAnimVectors[primIndex].y = _tempVector3.y;// * Time.fixedDeltaTime;
+                shapeAnimVectors[primIndex].z = _tempVector3.z;// * Time.fixedDeltaTime;
 
                 ppIndex++;
 
             }
+            _particleData.GetVelocities(m_actor.indices[0], m_actor.indexCount, m_velocities);
+
             //print(shapeAnimVectors.Length);
             for (int i = 0; i < shapeAnimVectors.Length; i++)
             {
@@ -384,8 +388,15 @@ namespace NVIDIA.Flex
                 // and
                 //_particleData.SetVelocities
                 // directly
-                m_actor.ApplyImpulse(shapeAnimVectors[i]*5000, i);
+                //m_actor.ApplyImpulse(shapeAnimVectors[i]*5000, i);
+
+                // this now replicates roughly what ApplyImpulses in Actor would do:
+                // TODO: why 5000? what are the units here?
+                // it should be impulse divide by particle mass (which is 1/w):
+                _tempVector3 = shapeAnimVectors[i] * m_particles[i].w;
+                m_velocities[i] += _tempVector3;
             }
+            _particleData.SetVelocities(m_actor.indices[0], m_actor.indexCount, m_velocities);
         }
 
     }
