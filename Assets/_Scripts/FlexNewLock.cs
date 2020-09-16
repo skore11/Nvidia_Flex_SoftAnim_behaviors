@@ -5,17 +5,25 @@ using NVIDIA.Flex;
 
 namespace NVIDIA.Flex
 {
+    /**
+     * Lock particles in the flex object based on a BoxCollider.
+     * FixedParticles of the flex asset are persistently stored!
+     * So they need to only be set/reset when the BoxCollider
+     * is moved or activated/deactivated.
+     * TODO: maybe add an update method that checks for changes in the BoxCollider
+     */
     public class FlexNewLock : MonoBehaviour
     {
         FlexSoftActor m_actor;
         BoxCollider locked_box;
         private Vector4[] m_particles;
-        // Start is called before the first frame update
+
         private void Awake()
         {
             m_actor = GetComponent<FlexSoftActor>();
             locked_box = GetComponent<BoxCollider>();
         }
+
         void Start()
         {
             m_actor.onFlexUpdate += OnFlexUpdate;
@@ -23,7 +31,6 @@ namespace NVIDIA.Flex
             m_particles = new Vector4[m_actor.indexCount];
         }
 
-        // Update is called once per frame
         void OnFlexUpdate(FlexContainer.ParticleData _particleData)
         {
             
