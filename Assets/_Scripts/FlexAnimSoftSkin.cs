@@ -103,23 +103,23 @@ namespace NVIDIA.Flex
 
         }
 
-    private int GetNearestVertIndex(Vector3 particlePos, Vector3[] cachedVertices)
-    {
-        float nearestDist = float.MaxValue;
-        int nearestIndex = -1;
-        for (int i = 0; i < cachedVertices.Length; i++)
+        private int GetNearestVertIndex(Vector3 particlePos, Vector3[] cachedVertices)
         {
-            float dist = Vector3.Distance(particlePos, cachedVertices[i]);
-            if (dist < nearestDist)
+            float nearestDist = float.MaxValue;
+            int nearestIndex = -1;
+            for (int i = 0; i < cachedVertices.Length; i++)
             {
-                nearestDist = dist;
-                nearestIndex = i;
+                float dist = Vector3.Distance(particlePos, cachedVertices[i]);
+                if (dist < nearestDist)
+                {
+                    nearestDist = dist;
+                    nearestIndex = i;
+                }
             }
+            return nearestIndex;
         }
-        return nearestIndex;
-    }
 
-    public Vector3 GetNearestVertPos(Vector3 particlePos, Vector3[] cachedVertices)
+        public Vector3 GetNearestVertPos(Vector3 particlePos, Vector3[] cachedVertices)
         //public int GetNearestVertIndex(Vector3 particlePos, Vector3[] cachedVertices)
         {
             float nearestDist = float.MaxValue;
@@ -141,7 +141,7 @@ namespace NVIDIA.Flex
             return nearestVertexPosition;
         }
 
-    private void SetBoneWeights( List<Vector3> uniqueParticlePositions, List<int> uniqueParticleIndices)
+        private void SetBoneWeights( List<Vector3> uniqueParticlePositions, List<int> uniqueParticleIndices)
         {
             SkinnedMeshRenderer skinnedMeshRenderer = Skin;
 
