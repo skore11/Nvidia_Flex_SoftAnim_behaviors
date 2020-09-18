@@ -53,200 +53,72 @@ namespace Percubed.Flex
     }
 
 
-
-    
-
-
-    //[ExecuteInEditMode]
+    [RequireComponent(typeof(FlexSoftActor))]
     public class FlexAnimSoftSkin : MonoBehaviour
     {
+        public SkinnedMeshRenderer referenceAnimSkin; // hmmmmmm this cannot be the local skinnedmeshrenderer,
+        // as that one is used by FlexSoftSkinning and its bones are set by that!
+        // SHOULD be using the original animation all along anyway! also in the other setup probably!
+        // i.e. the default avatar playing the animation (potentially offscreen)
 
-        float refreshRate = 1.0f / 30.0f;
-        float timeDelta;
-
-        FlexSoftActor m_actor;
-        BoxCollider locked_box;
-        //FlexContainer m_container;
+        private FlexSoftActor m_actor;
+        // caches for values copied in and out of the flex subsystem:
         private Vector4[] m_particles;
         private Vector3[] m_velocities;
-        //private int indices;
-        int start = 0;
-        public int frameInterval = 30;
-        private int framesToNextPrint = 0;
 
-        public SkinnedMeshRenderer Skin;
+        // TODO: clearly check/explain what function these member variables fulfill:
 
-        private List<int> unique_Index = new List<int>();//unique index of mesh vertices to map on to Flex particle positions
+        // unique index of mesh vertices to map on to Flex particle positions
+        private List<int> unique_Index = new List<int>();
         private List<Vector3> VertOffsetVectors = new List<Vector3>();
 
         private List<Vector3> particlePositions = new List<Vector3>(); // world Flex particle positions
 
-        //Needed to update the mass particle positions after assigning bone weights from vertex mapping
+        // Needed to update the mass particle positions after assigning bone weights from vertex mapping
         private List<Vector3> particleRestPositions = new List<Vector3>();
 
         private WeightList[] particleNodeWeights; // one per node (vert). Weights of standard mesh
 
         private Vector3[] shapeAnimVectors; // used when updating particle positions
 
-        Vector3[] _cachedVertices;
-        Matrix4x4[] _cachedBindposes;
-        BoneWeight[] _cachedBoneWeights;
-
-        bool map;
-
         private bool firstRun = true;
 
         private void Awake()
         {
             m_actor = GetComponent<FlexSoftActor>();
-            if (Skin == null)
+            if (referenceAnimSkin == null)
             {
-                Skin = GetComponent<SkinnedMeshRenderer>();
+                Debug.LogError("FlexAnimSoftSkin cannot work without a reference animation (Note: NOT the Skin of the Flex Object itself!)");
             }
-
-        }
-
-        private int GetNearestVertIndex(Vector3 particlePos, Vector3[] cachedVertices)
-        {
-            float nearestDist = float.MaxValue;
-            int nearestIndex = -1;
-            for (int i = 0; i < cachedVertices.Length; i++)
-            {
-                float dist = Vector3.Distance(particlePos, cachedVertices[i]);
-                if (dist < nearestDist)
-                {
-                    nearestDist = dist;
-                    nearestIndex = i;
-                }
-            }
-            return nearestIndex;
-        }
-
-        public Vector3 GetNearestVertPos(Vector3 particlePos, Vector3[] cachedVertices)
-        //public int GetNearestVertIndex(Vector3 particlePos, Vector3[] cachedVertices)
-        {
-            float nearestDist = float.MaxValue;
-            int nearestIndex = -1;
-            Vector3 nearestVertexPosition = new Vector3(0.0f, 0.0f, 0.0f);
-            for (int i = 0; i < cachedVertices.Length; i++)
-            {
-                float dist = Vector3.Distance(particlePos, cachedVertices[i]);
-                //Debug.Log("Mass pos: " + particlePos + "mesh vertex pos: " + cachedVertices[i]);
-                //Debug.DrawLine(particlePos, cachedVertices[i], Color.blue, 5.5f);
-                if (dist < nearestDist)
-                {
-                    nearestDist = dist;
-                    nearestVertexPosition = cachedVertices[i];
-                    nearestIndex = i;
-                }
-            }
-            //return nearestIndex;
-            return nearestVertexPosition;
-        }
-
-        private void SetBoneWeights( List<Vector3> uniqueParticlePositions, List<int> uniqueParticleIndices)
-        {
-            SkinnedMeshRenderer skinnedMeshRenderer = Skin;
-
-            // Cache used values rather than accessing straight from the mesh on the loop below
-            Vector3[] cachedVertices = skinnedMeshRenderer.sharedMesh.vertices;
-
-            Matrix4x4[] cachedBindposes = skinnedMeshRenderer.sharedMesh.bindposes;
-            BoneWeight[] cachedBoneWeights = skinnedMeshRenderer.sharedMesh.boneWeights;
-
-            // Make a CWeightList for each bone in the skinned mesh
-            WeightList[] nodeWeights = new WeightList[skinnedMeshRenderer.bones.Length];
-            for (int i = 0; i < skinnedMeshRenderer.bones.Length; i++)
-            {
-                nodeWeights[i] = new WeightList();
-                nodeWeights[i].boneIndex = i;
-                nodeWeights[i].transform = skinnedMeshRenderer.bones[i];
-            }
-
-            for (int uniqueIndex = 0; uniqueIndex < uniqueParticleIndices.Count; uniqueIndex++)
-            {
-                //Vector3 particlePos = uniqueParticlePositions[uniqueIndex];
-                //int i = GetNearestSkinVertIndex(particlePos, ref cachedVertices);
-                int i = uniqueParticleIndices[uniqueIndex];
-                Vector3 particlePos = uniqueParticlePositions[i];
-                //Debug.Log(i);
-                //nearestVertIndex.Add(i);
-                //uniqueIndex.Add(uniqueIndex);
-                BoneWeight bw = cachedBoneWeights[i];
-
-                if (bw.weight0 != 0.0f)
-                {
-                    Vector3 localPt = cachedBindposes[bw.boneIndex0].MultiplyPoint3x4(particlePos);// cachedVertices[i]);
-                    nodeWeights[bw.boneIndex0].weights.Add(new VertexWeight(uniqueIndex, localPt, bw.weight0));
-                }
-                if (bw.weight1 != 0.0f)
-                {
-                    Vector3 localPt = cachedBindposes[bw.boneIndex1].MultiplyPoint3x4(particlePos);//cachedVertices[i]);
-                    nodeWeights[bw.boneIndex1].weights.Add(new VertexWeight(uniqueIndex, localPt, bw.weight1));
-                }
-                if (bw.weight2 != 0.0f)
-                {
-                    Vector3 localPt = cachedBindposes[bw.boneIndex2].MultiplyPoint3x4(particlePos);//cachedVertices[i]);
-                    nodeWeights[bw.boneIndex2].weights.Add(new VertexWeight(uniqueIndex, localPt, bw.weight2));
-                }
-                if (bw.weight3 != 0.0f)
-                {
-                    Vector3 localPt = cachedBindposes[bw.boneIndex3].MultiplyPoint3x4(particlePos);//cachedVertices[i]);
-                    nodeWeights[bw.boneIndex3].weights.Add(new VertexWeight(uniqueIndex, localPt, bw.weight3));
-                }
-            }
-            particleNodeWeights = nodeWeights;
         }
 
         private void Start()
         {
-            //Mesh mesh = Skin.sharedMesh;
-            //Vector3[] cachedVertices = mesh.vertices;
-            //List<Vector3> tempCache = new List<Vector3>();
-            //for (int i = 0; i < cachedVertices.Length; i++)
-            //{
-            //    tempCache.Add(cachedVertices[i]);
-            //}
             m_actor.onFlexUpdate += OnFlexUpdate;
             m_particles = new Vector4[m_actor.indexCount];
             m_velocities = new Vector3[m_particles.Length];
             shapeAnimVectors = new Vector3[m_particles.Length];
-            Debug.Log("Created array of size: " + m_actor.indexCount);
-            Debug.Log("All indices: " + m_actor.indices[0] + " to " + m_actor.indices[m_actor.indexCount - 1]);
-            Debug.Log(" mass Scale: " + m_actor.massScale);
-            Debug.Log(" particle Group: " + m_actor.particleGroup);
-            Debug.Log(" reference Shape: " + m_actor.asset.referenceShape);
-            Debug.Log(" shapeindices length: " + m_actor.asset.shapeCenters.Length);
-            Debug.Log(" fixed particles: " + m_actor.asset.fixedParticles.Length);
-
-            map = true;
-
+            string debugOutput = "Animating " + m_actor.name + " based on Skin " + referenceAnimSkin.name;
+            debugOutput += "\n Indices: " + m_actor.indexCount + " from " + m_actor.indices[0] + " to " + m_actor.indices[m_actor.indexCount - 1];
+            debugOutput += "\n mass Scale: " + m_actor.massScale;
+            debugOutput += "\n particle Group: " + m_actor.particleGroup;
+            debugOutput += "\n reference Shape: " + m_actor.asset.referenceShape;
+            debugOutput += "\n shapeindices length: " + m_actor.asset.shapeCenters.Length;
+            debugOutput += "\n fixed particles: " + m_actor.asset.fixedParticles.Length;
+            Debug.Log(debugOutput);
         }
-
-        IEnumerator WaitForParticles()
-        {
-            while (m_particles[0].x == 0.0f)
-            {
-                yield return null;
-            }
-        }
-        #region
 
         void OnFlexUpdate(FlexContainer.ParticleData _particleData)
         {
-            //Debug.Log("test");
-            //if (this.framesToNextPrint > 0)
-            //{
-            //    this.framesToNextPrint -= 1;
-            //    return;
-            //}
-            //this.framesToNextPrint = this.frameInterval;
-
-            if (map)
+            if (firstRun)
             {
-                Debug.Log("test");
+                firstRun = false; // only run this once:
+                Debug.Log("Creating Vertex Mapping");
+                // TODO: this probably needs to be done outside of firstRun, as particle positions are
+                // used later too (?)
                 _particleData.GetParticles(m_actor.indices[0], m_actor.indexCount, m_particles);
-                Mesh mesh = Skin.sharedMesh;
+                // TODO: re-check full algorithm below...
+                Mesh mesh = referenceAnimSkin.sharedMesh;
                 Vector3[] cachedVertices = mesh.vertices;
                 List<Vector3> tempCache = new List<Vector3>();
                 for (int i = 0; i < cachedVertices.Length; i++)
@@ -272,76 +144,31 @@ namespace Percubed.Flex
                     unique_Index.Add(nearestIndexforParticle);
                 }
                 SetBoneWeights( tempCache, unique_Index);
-
-
                 particlePositions = particleRestPositions;
-                tempCache = null;
-                map = false;
             }
-
-            //_particleData.GetParticles(m_actor.indices[0], m_actor.indexCount, m_particles);
-            //Vector4 testVector = _particleData.GetParticle(m_actor.indices[0]);
-
-            //if (firstRun)
-            //{
-            //    firstRun = false;
-
-            //    _cachedVertices = Skin.sharedMesh.vertices;
-            //    _cachedBindposes = Skin.sharedMesh.bindposes;
-            //    _cachedBoneWeights = Skin.sharedMesh.boneWeights;
-
-            //    List<Vector3> tempCache = new List<Vector3>();
-            //    for (int i = 0; i < _cachedVertices.Length; i++)
-            //    {
-            //        tempCache.Add(_cachedVertices[i]);
-            //    }
-            //    SetBoneWeights(tempCache, unique_Index);
-            //    particlePositions = particleRestPositions;
-
-
-            //    UpdateParticlePositions();
-            //}
-            //else
-            //{
-            //    if (timeDelta < refreshRate)
-            //        return;
-                UpdateParticlePositions(_particleData);
-            //}
-
-            //Debug.Log(" OnFlexUpdate in our claSS!!!!!! got particle: " + testVector);
-            //Debug.Log(" fixed particles: " + m_actor.asset.fixedParticles.Length);
-            //Debug.Log(" Indices: " + m_actor.indices[0] + "  " + m_actor.indices[20]);
-            //Debug.Log(" OnFlexUpdate in our claSS!!!!!! got particle: " + m_particles[0] + m_particles[1]
-            //    + m_particles[m_actor.indexCount / 2] + m_particles[m_actor.indexCount / 4]);
-
+            UpdateParticlePositions(_particleData);
         }
-        #endregion
 
         public void UpdateParticlePositions(FlexContainer.ParticleData _particleData)
         {
-            //set all particle postions to zero Vector first
+            // set all particle postions to zero Vector first
             for (int i = 0; i < particlePositions.Count; i++)
             {
                 //particlePositions[i] = Spawner.nextPositions[i];
                 particlePositions[i] = Vector3.zero;
             }
-
-
             // Now get the local positions of all weighted indices...
             foreach (WeightList wList in particleNodeWeights)
             {
                 //print(wList);
                 foreach (VertexWeight vw in wList.weights)
                 {
-                    Transform t = Skin.bones[wList.boneIndex];
+                    Transform t = referenceAnimSkin.bones[wList.boneIndex];
                     particlePositions[vw.index] += t.localToWorldMatrix.MultiplyPoint3x4(vw.localPosition) * vw.weight + VertOffsetVectors[vw.index];
-
                     //print(particlePositions[vw.index]);
                 }
             }
-
             //print(particlePositions.Count);
-
             if (particlePositions.Count == 0)
             {
                 return;
@@ -349,8 +176,6 @@ namespace Percubed.Flex
             //print(particlePositions.Count);
             // Now convert each point into local coordinates of this object.
             //List<Vector3> nextPos = new List<Vector3>(particlePositions.Count);
-            
-
             //for (int i = 0; i < particlePositions.Count; i++)
             //{
             int ppIndex = 0;
@@ -399,5 +224,94 @@ namespace Percubed.Flex
             _particleData.SetVelocities(m_actor.indices[0], m_actor.indexCount, m_velocities);
         }
 
+        private void SetBoneWeights(List<Vector3> uniqueParticlePositions, List<int> uniqueParticleIndices)
+        {
+            // Cache used values rather than accessing straight from the mesh on the loop below
+            Vector3[] cachedVertices = referenceAnimSkin.sharedMesh.vertices;
+
+            Matrix4x4[] cachedBindposes = referenceAnimSkin.sharedMesh.bindposes;
+            BoneWeight[] cachedBoneWeights = referenceAnimSkin.sharedMesh.boneWeights;
+
+            // Make a CWeightList for each bone in the skinned mesh
+            WeightList[] nodeWeights = new WeightList[referenceAnimSkin.bones.Length];
+            for (int i = 0; i < referenceAnimSkin.bones.Length; i++)
+            {
+                nodeWeights[i] = new WeightList();
+                nodeWeights[i].boneIndex = i;
+                nodeWeights[i].transform = referenceAnimSkin.bones[i];
+            }
+
+            for (int uniqueIndex = 0; uniqueIndex < uniqueParticleIndices.Count; uniqueIndex++)
+            {
+                //Vector3 particlePos = uniqueParticlePositions[uniqueIndex];
+                //int i = GetNearestSkinVertIndex(particlePos, ref cachedVertices);
+                int i = uniqueParticleIndices[uniqueIndex];
+                Vector3 particlePos = uniqueParticlePositions[i];
+                //Debug.Log(i);
+                //nearestVertIndex.Add(i);
+                //uniqueIndex.Add(uniqueIndex);
+                BoneWeight bw = cachedBoneWeights[i];
+
+                if (bw.weight0 != 0.0f)
+                {
+                    Vector3 localPt = cachedBindposes[bw.boneIndex0].MultiplyPoint3x4(particlePos);// cachedVertices[i]);
+                    nodeWeights[bw.boneIndex0].weights.Add(new VertexWeight(uniqueIndex, localPt, bw.weight0));
+                }
+                if (bw.weight1 != 0.0f)
+                {
+                    Vector3 localPt = cachedBindposes[bw.boneIndex1].MultiplyPoint3x4(particlePos);//cachedVertices[i]);
+                    nodeWeights[bw.boneIndex1].weights.Add(new VertexWeight(uniqueIndex, localPt, bw.weight1));
+                }
+                if (bw.weight2 != 0.0f)
+                {
+                    Vector3 localPt = cachedBindposes[bw.boneIndex2].MultiplyPoint3x4(particlePos);//cachedVertices[i]);
+                    nodeWeights[bw.boneIndex2].weights.Add(new VertexWeight(uniqueIndex, localPt, bw.weight2));
+                }
+                if (bw.weight3 != 0.0f)
+                {
+                    Vector3 localPt = cachedBindposes[bw.boneIndex3].MultiplyPoint3x4(particlePos);//cachedVertices[i]);
+                    nodeWeights[bw.boneIndex3].weights.Add(new VertexWeight(uniqueIndex, localPt, bw.weight3));
+                }
+            }
+            particleNodeWeights = nodeWeights;
+        }
+
+        private int GetNearestVertIndex(Vector3 particlePos, Vector3[] cachedVertices)
+        {
+            float nearestDist = float.MaxValue;
+            int nearestIndex = -1;
+            for (int i = 0; i < cachedVertices.Length; i++)
+            {
+                float dist = Vector3.Distance(particlePos, cachedVertices[i]);
+                if (dist < nearestDist)
+                {
+                    nearestDist = dist;
+                    nearestIndex = i;
+                }
+            }
+            return nearestIndex;
+        }
+
+        public Vector3 GetNearestVertPos(Vector3 particlePos, Vector3[] cachedVertices)
+        //public int GetNearestVertIndex(Vector3 particlePos, Vector3[] cachedVertices)
+        {
+            float nearestDist = float.MaxValue;
+            int nearestIndex = -1;
+            Vector3 nearestVertexPosition = new Vector3(0.0f, 0.0f, 0.0f);
+            for (int i = 0; i < cachedVertices.Length; i++)
+            {
+                float dist = Vector3.Distance(particlePos, cachedVertices[i]);
+                //Debug.Log("Mass pos: " + particlePos + "mesh vertex pos: " + cachedVertices[i]);
+                //Debug.DrawLine(particlePos, cachedVertices[i], Color.blue, 5.5f);
+                if (dist < nearestDist)
+                {
+                    nearestDist = dist;
+                    nearestVertexPosition = cachedVertices[i];
+                    nearestIndex = i;
+                }
+            }
+            //return nearestIndex;
+            return nearestVertexPosition;
+        }
     }
 }
