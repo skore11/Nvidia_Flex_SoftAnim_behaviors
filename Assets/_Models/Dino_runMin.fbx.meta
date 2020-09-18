@@ -1,0 +1,1091 @@
+fileFormatVersion: 2
+guid: ea2b3ad7ed0dfd3439364cf4beb934aa
+ModelImporter:
+  serializedVersion: 26
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: allosaurus
+  - first:
+      1: 100002
+    second: Armature
+  - first:
+      1: 100004
+    second: Bone01
+  - first:
+      1: 100006
+    second: Bone02
+  - first:
+      1: 100008
+    second: Bone03
+  - first:
+      1: 100010
+    second: Bone04
+  - first:
+      1: 100012
+    second: Bone05
+  - first:
+      1: 100014
+    second: Bone05_end
+  - first:
+      1: 100016
+    second: Bone06
+  - first:
+      1: 100018
+    second: Bone07
+  - first:
+      1: 100020
+    second: Bone07_end
+  - first:
+      1: 100022
+    second: Bone08
+  - first:
+      1: 100024
+    second: Bone09
+  - first:
+      1: 100026
+    second: Bone10
+  - first:
+      1: 100028
+    second: Bone11
+  - first:
+      1: 100030
+    second: Bone11_end
+  - first:
+      1: 100032
+    second: Bone12
+  - first:
+      1: 100034
+    second: Bone13
+  - first:
+      1: 100036
+    second: Bone14
+  - first:
+      1: 100038
+    second: Bone15
+  - first:
+      1: 100040
+    second: Bone16
+  - first:
+      1: 100042
+    second: Bone17
+  - first:
+      1: 100044
+    second: Bone18
+  - first:
+      1: 100046
+    second: Bone19
+  - first:
+      1: 100048
+    second: Bone19_end
+  - first:
+      1: 100050
+    second: Bone20
+  - first:
+      1: 100052
+    second: Bone20_end
+  - first:
+      1: 100054
+    second: Bone21
+  - first:
+      1: 100056
+    second: Bone22
+  - first:
+      1: 100058
+    second: Bone23
+  - first:
+      1: 100060
+    second: Bone24
+  - first:
+      1: 100062
+    second: Bone25
+  - first:
+      1: 100064
+    second: Bone25_end
+  - first:
+      1: 100066
+    second: Bone26
+  - first:
+      1: 100068
+    second: Bone27
+  - first:
+      1: 100070
+    second: Bone28
+  - first:
+      1: 100072
+    second: Bone29
+  - first:
+      1: 100074
+    second: Bone29_end
+  - first:
+      1: 100076
+    second: Bone30
+  - first:
+      1: 100078
+    second: Bone31
+  - first:
+      1: 100080
+    second: Bone32
+  - first:
+      1: 100082
+    second: Bone33
+  - first:
+      1: 100084
+    second: Bone34
+  - first:
+      1: 100086
+    second: Bone35
+  - first:
+      1: 100088
+    second: Bone36
+  - first:
+      1: 100090
+    second: Bone37
+  - first:
+      1: 100092
+    second: Bone38
+  - first:
+      1: 100094
+    second: //RootNode
+  - first:
+      1: 100096
+    second: IK Chain05
+  - first:
+      1: 100098
+    second: IK Chain06
+  - first:
+      1: 100100
+    second: IK Chain07
+  - first:
+      1: 100102
+    second: IK Chain08
+  - first:
+      4: 400000
+    second: allosaurus
+  - first:
+      4: 400002
+    second: Armature
+  - first:
+      4: 400004
+    second: Bone01
+  - first:
+      4: 400006
+    second: Bone02
+  - first:
+      4: 400008
+    second: Bone03
+  - first:
+      4: 400010
+    second: Bone04
+  - first:
+      4: 400012
+    second: Bone05
+  - first:
+      4: 400014
+    second: Bone05_end
+  - first:
+      4: 400016
+    second: Bone06
+  - first:
+      4: 400018
+    second: Bone07
+  - first:
+      4: 400020
+    second: Bone07_end
+  - first:
+      4: 400022
+    second: Bone08
+  - first:
+      4: 400024
+    second: Bone09
+  - first:
+      4: 400026
+    second: Bone10
+  - first:
+      4: 400028
+    second: Bone11
+  - first:
+      4: 400030
+    second: Bone11_end
+  - first:
+      4: 400032
+    second: Bone12
+  - first:
+      4: 400034
+    second: Bone13
+  - first:
+      4: 400036
+    second: Bone14
+  - first:
+      4: 400038
+    second: Bone15
+  - first:
+      4: 400040
+    second: Bone16
+  - first:
+      4: 400042
+    second: Bone17
+  - first:
+      4: 400044
+    second: Bone18
+  - first:
+      4: 400046
+    second: Bone19
+  - first:
+      4: 400048
+    second: Bone19_end
+  - first:
+      4: 400050
+    second: Bone20
+  - first:
+      4: 400052
+    second: Bone20_end
+  - first:
+      4: 400054
+    second: Bone21
+  - first:
+      4: 400056
+    second: Bone22
+  - first:
+      4: 400058
+    second: Bone23
+  - first:
+      4: 400060
+    second: Bone24
+  - first:
+      4: 400062
+    second: Bone25
+  - first:
+      4: 400064
+    second: Bone25_end
+  - first:
+      4: 400066
+    second: Bone26
+  - first:
+      4: 400068
+    second: Bone27
+  - first:
+      4: 400070
+    second: Bone28
+  - first:
+      4: 400072
+    second: Bone29
+  - first:
+      4: 400074
+    second: Bone29_end
+  - first:
+      4: 400076
+    second: Bone30
+  - first:
+      4: 400078
+    second: Bone31
+  - first:
+      4: 400080
+    second: Bone32
+  - first:
+      4: 400082
+    second: Bone33
+  - first:
+      4: 400084
+    second: Bone34
+  - first:
+      4: 400086
+    second: Bone35
+  - first:
+      4: 400088
+    second: Bone36
+  - first:
+      4: 400090
+    second: Bone37
+  - first:
+      4: 400092
+    second: Bone38
+  - first:
+      4: 400094
+    second: //RootNode
+  - first:
+      4: 400096
+    second: IK Chain05
+  - first:
+      4: 400098
+    second: IK Chain06
+  - first:
+      4: 400100
+    second: IK Chain07
+  - first:
+      4: 400102
+    second: IK Chain08
+  - first:
+      21: 2100000
+    second: 03 - Default
+  - first:
+      43: 4300000
+    second: allosaurus
+  - first:
+      74: 7400000
+    second: Armature|Armature|Take 001|BaseLayer
+  - first:
+      74: 7400002
+    second: Armature|IK Chain05|Take 001|BaseLayer
+  - first:
+      74: 7400004
+    second: Armature|IK Chain06|Take 001|BaseLayer
+  - first:
+      74: 7400006
+    second: Armature|IK Chain07|Take 001|BaseLayer
+  - first:
+      74: 7400008
+    second: Armature|IK Chain08|Take 001|BaseLayer
+  - first:
+      74: 7400010
+    second: IK Chain08|IK Chain05|Take 001|BaseLayer
+  - first:
+      74: 7400012
+    second: IK Chain08|IK Chain06|Take 001|BaseLayer
+  - first:
+      74: 7400014
+    second: IK Chain08|IK Chain07|Take 001|BaseLayer
+  - first:
+      74: 7400016
+    second: IK Chain08|IK Chain08|Take 001|BaseLayer
+  - first:
+      74: 7400018
+    second: IK Chain07|IK Chain05|Take 001|BaseLayer
+  - first:
+      74: 7400020
+    second: IK Chain07|IK Chain06|Take 001|BaseLayer
+  - first:
+      74: 7400022
+    second: IK Chain07|IK Chain07|Take 001|BaseLayer
+  - first:
+      74: 7400024
+    second: IK Chain07|IK Chain08|Take 001|BaseLayer
+  - first:
+      74: 7400026
+    second: IK Chain06|IK Chain05|Take 001|BaseLayer
+  - first:
+      74: 7400028
+    second: IK Chain06|IK Chain06|Take 001|BaseLayer
+  - first:
+      74: 7400030
+    second: IK Chain06|IK Chain07|Take 001|BaseLayer
+  - first:
+      74: 7400032
+    second: IK Chain06|IK Chain08|Take 001|BaseLayer
+  - first:
+      74: 7400034
+    second: IK Chain05|IK Chain05|Take 001|BaseLayer
+  - first:
+      74: 7400036
+    second: IK Chain05|IK Chain06|Take 001|BaseLayer
+  - first:
+      74: 7400038
+    second: IK Chain05|IK Chain07|Take 001|BaseLayer
+  - first:
+      74: 7400040
+    second: IK Chain05|IK Chain08|Take 001|BaseLayer
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: allosaurus
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Armature|Armature|Take 001|BaseLayer
+      takeName: Armature|Armature|Take 001|BaseLayer
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 28
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|IK Chain05|Take 001|BaseLayer
+      takeName: Armature|IK Chain05|Take 001|BaseLayer
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 26
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|IK Chain06|Take 001|BaseLayer
+      takeName: Armature|IK Chain06|Take 001|BaseLayer
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 26
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|IK Chain07|Take 001|BaseLayer
+      takeName: Armature|IK Chain07|Take 001|BaseLayer
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 26
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|IK Chain08|Take 001|BaseLayer
+      takeName: Armature|IK Chain08|Take 001|BaseLayer
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 26
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: IK Chain08|IK Chain05|Take 001|BaseLayer
+      takeName: IK Chain08|IK Chain05|Take 001|BaseLayer
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 26
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: IK Chain08|IK Chain06|Take 001|BaseLayer
+      takeName: IK Chain08|IK Chain06|Take 001|BaseLayer
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 26
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: IK Chain08|IK Chain07|Take 001|BaseLayer
+      takeName: IK Chain08|IK Chain07|Take 001|BaseLayer
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 26
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: IK Chain08|IK Chain08|Take 001|BaseLayer
+      takeName: IK Chain08|IK Chain08|Take 001|BaseLayer
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 26
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: IK Chain07|IK Chain05|Take 001|BaseLayer
+      takeName: IK Chain07|IK Chain05|Take 001|BaseLayer
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 26
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: IK Chain07|IK Chain06|Take 001|BaseLayer
+      takeName: IK Chain07|IK Chain06|Take 001|BaseLayer
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 26
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: IK Chain07|IK Chain07|Take 001|BaseLayer
+      takeName: IK Chain07|IK Chain07|Take 001|BaseLayer
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 26
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: IK Chain07|IK Chain08|Take 001|BaseLayer
+      takeName: IK Chain07|IK Chain08|Take 001|BaseLayer
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 26
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: IK Chain06|IK Chain05|Take 001|BaseLayer
+      takeName: IK Chain06|IK Chain05|Take 001|BaseLayer
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 26
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: IK Chain06|IK Chain06|Take 001|BaseLayer
+      takeName: IK Chain06|IK Chain06|Take 001|BaseLayer
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 26
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: IK Chain06|IK Chain07|Take 001|BaseLayer
+      takeName: IK Chain06|IK Chain07|Take 001|BaseLayer
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 26
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: IK Chain06|IK Chain08|Take 001|BaseLayer
+      takeName: IK Chain06|IK Chain08|Take 001|BaseLayer
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 26
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: IK Chain05|IK Chain05|Take 001|BaseLayer
+      takeName: IK Chain05|IK Chain05|Take 001|BaseLayer
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 26
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: IK Chain05|IK Chain06|Take 001|BaseLayer
+      takeName: IK Chain05|IK Chain06|Take 001|BaseLayer
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 26
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: IK Chain05|IK Chain07|Take 001|BaseLayer
+      takeName: IK Chain05|IK Chain07|Take 001|BaseLayer
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 26
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: IK Chain05|IK Chain08|Take 001|BaseLayer
+      takeName: IK Chain05|IK Chain08|Take 001|BaseLayer
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 26
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
